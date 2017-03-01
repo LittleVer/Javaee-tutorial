@@ -1,11 +1,13 @@
 package com.giit.www.util;
 
-import org.springframework.stereotype.Component;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.HashMap;
+import java.util.List;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.util.*;
+import org.springframework.stereotype.Component;
 
 /**
  * Created by c0de8ug on 16-2-15.
@@ -15,7 +17,7 @@ import java.util.*;
 public class TermContainer {
     //TODO 这个volatile用的好像很蠢...一个月一次目测不会出事。。
     static List<Term> termList;
-    static LocalDate beginTime;
+    static Date beginTime;
     static HashMap<String, String> map = new HashMap<>();
     final static String lastTermStr = "上学期";
     final static String nextTermStr = "下学期";
@@ -32,21 +34,21 @@ public class TermContainer {
         for (String temp : nextSemester.split(",")) {
             map.put(temp, nextTermStr);
         }
-        beginTime = LocalDate.of(2014, 1, 1);
+        beginTime = new GregorianCalendar(2014,1,1).getTime();
         update();
     }
 
     public static void update() {
         termList = new ArrayList<>();
 
-        LocalDate today = LocalDate.now();
+        Date today = new Date();
 
 
         int beginYear = beginTime.getYear();
         int todayYear = today.getYear();
         int count = todayYear - beginYear;
 
-        if (map.get(String.valueOf(today.getMonthValue())).equals(nextTermStr)) {
+        if (map.get(String.valueOf(today.getMonth())).equals(nextTermStr)) {
             Term term = new Term();
             term.setVal(todayYear + "2");
             term.setText(todayYear + nextTermStr);
