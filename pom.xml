@@ -10,7 +10,19 @@
     <name>giit</name>
     <url>http://maven.apache.org</url>
 
-
+	<repositories>
+		<repository>
+			<id>maven-net-cn</id>
+			<name>Maven China Mirror</name>
+			<url>http://222.73.1.15:18089/nexus/content/groups/public/</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
     <dependencies>
         <!--junit相关包-->
         <dependency>
