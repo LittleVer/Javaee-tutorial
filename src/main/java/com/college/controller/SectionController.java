@@ -1,19 +1,17 @@
 package com.college.controller;
 
-import com.college.service.SectionBiz;
-import com.entity.Section;
-import com.entity.Timetable;
-import com.util.TermContainer;
+import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 
 import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import sun.misc.Timeable;
-
-import javax.annotation.Resource;
-import javax.servlet.http.HttpSession;
+import com.college.service.SectionBiz;
+import com.entity.Section;
+import com.entity.Timetable;
+import com.util.TermContainer;
 
 /**
  * Created by c0de8ug on 16-2-12.
