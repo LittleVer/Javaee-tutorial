@@ -1,8 +1,6 @@
 package com.college.controller;
 
-import com.college.service.DeptBiz;
-import com.college.service.SpecBiz;
-import com.entity.Spec;
+import javax.annotation.Resource;
 
 import org.apache.ibatis.annotations.Param;
 import org.apache.shiro.authz.annotation.RequiresRoles;
@@ -10,7 +8,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import javax.annotation.Resource;
+import com.college.service.SpecBiz;
+import com.entity.Spec;
 
 /**
  * Created by c0de8ug on 16-2-11.
