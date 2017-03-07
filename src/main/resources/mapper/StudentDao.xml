@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 
-<mapper namespace="com.giit.www.college.dao.StudentDao">
+<mapper namespace="com.college.dao.StudentDao">
     <resultMap id="student_map" type="Student">
         <id property="studentId" column="student_id"/>
         <result property="studentName" column="student_name"/>

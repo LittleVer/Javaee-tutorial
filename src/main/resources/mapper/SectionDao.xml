@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 
-<mapper namespace="com.giit.www.college.dao.SectionDao">
+<mapper namespace="com.college.dao.SectionDao">
 
     <resultMap id="sec_map" type="Section">
         <result property="secId" column="sec_id"/>

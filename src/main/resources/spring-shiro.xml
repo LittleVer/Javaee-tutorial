@@ -17,7 +17,7 @@
     </bean>
 
     <!-- Realm实现 -->
-    <bean id="userRealm" class="com.giit.www.realm.UserRealm">
+    <bean id="userRealm" class="com.realm.UserRealm">
         <property name="credentialsMatcher" ref="credentialsMatcher"/>
     </bean>
 
@@ -33,8 +33,10 @@
     </bean>
 
     <!-- 基于Form表单的身份验证过滤器 -->
-    <bean id="formAuthenticationFilter" class="com.giit.www.filter.FormLoginFilter">
+    <bean id="formAuthenticationFilter" class="com.filter.FormLoginFilter">
     </bean>
+    
+    <bean id="anno" class="org.apache.shiro.web.filter.authc.AnonymousFilter"/>
 
     <!-- Shiro的Web过滤器 -->
     <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
@@ -42,12 +44,24 @@
         <property name="filters">
             <util:map>
                 <entry key="authc" value-ref="formAuthenticationFilter"/>
+                <entry key="anno" value-ref="anno"/>
             </util:map>
+        </property>
+         <property name="filterChainDefinitionMap">
+            <map>
+                <entry key="anon" value="anon"/>
+                <entry key="authc" value="authc"/>
+            </map>
         </property>
         <property name="filterChainDefinitions">
             <value>
-                /login = authc
+                /login.jsp = anon
                 /logout = logout
+                /dist/** = anon
+                /img/** = anon
+                /js/** = anon
+                /bower_components/** = anon
+                /** = authc
             </value>
         </property>
     </bean>

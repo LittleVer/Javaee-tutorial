@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 
-<mapper namespace="com.giit.www.college.dao.CourseDao">
+<mapper namespace="com.college.dao.CourseDao">
 
     <resultMap id="course_map" type="Course">
         <result property="courseTitle" column="course_title"></result>

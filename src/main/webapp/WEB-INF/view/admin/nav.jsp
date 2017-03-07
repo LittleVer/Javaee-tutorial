@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://shiro.apache.org/tags" prefix="shiro" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,7 +12,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>桂林电子科技大学教材订购系统</title>
+    <title>车辆管理系统</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="${pageContext.request.contextPath}/bower_components/bootstrap/dist/css/bootstrap.min.css"
@@ -52,7 +53,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">桂林电子科技大学教材订购系统</a>
+            <a class="navbar-brand" href="#">车辆管理系统</a>
         </div>
         <!-- /.navbar-header -->
 
@@ -79,17 +80,16 @@
 
         <div class="navbar-default sidebar" role="navigation">
             <div class="sidebar-nav navbar-collapse">
+            	<shiro:hasRole name="admin">
                 <ul class="nav" id="side-menu">
                     <li>
                         <a href="${pageContext.request.contextPath}/main.do/admin"><i class="fa fa-book fa-fw"></i> 控制面板</a>
                     </li>
                     <li>
-                        <a href="${pageContext.request.contextPath}/user.do/user.view"><i class="fa fa-book fa-fw"></i>
-                            用户管理</a>
+                        <a href="${pageContext.request.contextPath}/user.do/user.view"><i class="fa fa-book fa-fw"></i> 用户管理</a>
                     </li>
                     <li>
-                        <a href="${pageContext.request.contextPath}/role.do/role.view"><i class="fa fa-book fa-fw"></i>
-                            角色管理</a>
+                        <a href="${pageContext.request.contextPath}/role.do/role.view"><i class="fa fa-book fa-fw"></i> 角色管理</a>
                     </li>
                     <li>
                         <a href="#"><i class="fa fa-wrench fa-fw"></i> 学院管理<span class="fa arrow"></span></a>
@@ -116,15 +116,49 @@
                                 <a href="${pageContext.request.contextPath}/student.do/student.view"> 学生管理</a>
                             </li>
                             <li>
-                                <a href="${pageContext.request.contextPath}/orderbook.do/orderbook_review.view/">
-                                    秘书审核</a>
+                                <a href="${pageContext.request.contextPath}/orderbook.do/orderbook_review.view/"> 秘书审核</a>
                             </li>
-
                         </ul>
                         <!-- /.nav-second-level -->
                     </li>
-
                 </ul>
+                </shiro:hasRole>
+                <shiro:hasRole name="student">
+                	<ul class="nav" id="side-menu">
+                    <li>
+                        <a href="${pageContext.request.contextPath}/main.do/student"> 主页</a>
+                    </li>
+                    <li>
+                        <a href="/"> 个人信息</a>
+                    </li>
+                    <li>
+                        <a href="/"> 课表</a>
+                    </li>
+                    <li>
+                        <a href="${pageContext.request.contextPath}/elective.do/elective.view"> 选课</a>
+                    </li>
+                </ul>
+                </shiro:hasRole>
+                <shiro:hasRole name="teacher">
+                	<ul class="nav" id="side-menu">
+                    <li>
+                        <a href="${pageContext.request.contextPath}/main.do/teacher"> 主页</a>
+                    </li>
+                    <li>
+                        <a href="#"> 成绩录入</a>
+                    </li>
+                    <li>
+                        <a href="${pageContext.request.contextPath}/orderbook.do/orderbook.view"> 教材添加</a>
+                    </li>
+                </ul>
+                </shiro:hasRole>
+                <shiro:hasRole name="supplier">
+               	 	<ul class="nav" id="side-menu">
+                    	<li>
+                        	<a href="${pageContext.request.contextPath}/supplier.do/supplier.view"> 采购单</a>
+                   	 	</li>
+                	</ul>
+                </shiro:hasRole>
             </div>
             <!-- /.sidebar-collapse -->
         </div>

@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 
-<mapper namespace="com.giit.www.college.dao.OrderBookDao">
+<mapper namespace="com.college.dao.OrderBookDao">
 
     <resultMap id="orderBookReviewVo_map" type="OrderBookReviewVo">
         <result property="secId" column="sec_id"/>
