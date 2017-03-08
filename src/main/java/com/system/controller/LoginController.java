@@ -27,7 +27,6 @@ public class LoginController {
     public String login(HttpServletRequest req, ModelMap modelMap, HttpSession session) {
         String exceptionClassName = (String) req.getAttribute("shiroLoginFailure");
         String error = null;
-        System.out.println(req.getAttribute("username"));
         if (UnknownAccountException.class.getName().equals(exceptionClassName)) {
             error = "用户名/密码错误";
         } else if (IncorrectCredentialsException.class.getName().equals(exceptionClassName)) {

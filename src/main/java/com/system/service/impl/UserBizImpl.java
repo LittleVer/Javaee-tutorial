@@ -90,8 +90,6 @@ public class UserBizImpl implements UserBiz {
     }
 
     public void add(User user) {
-        //TODO 这里为了完成功能直接按照权限判断添加到staff中,应该新增一个前端页面,进行教师的管理- -!!时间没了,这么做太2了
-
         passwordHelper.encryptPassword(user);
         userDao.add(user);
         String id = user.getUserId();

@@ -24,7 +24,7 @@
                                 <label>用户名</label>
                                 <input class="form-control" name="userId">
                                 <label>密码</label>
-                                <input class="form-control" name="password">
+                                <input class="form-control" name="password" type="password">
                                 <label>邮箱</label>
                                 <input class="form-control" name="email">
                                 <label>角色列表(按住shift键多选)</label>

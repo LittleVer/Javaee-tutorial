@@ -17,7 +17,15 @@
 <script>
   $(document).ready(function () {
     $('#dataTables-example').DataTable({
-      responsive: true
+      responsive: true,
+      language:{
+    	  info: "Showing _START_ to _END_ of _TOTAL_ entries"
+      }
+      /*createdRow: function( row, data, dataIndex ) {
+   	    if ( dataIndex % 2 == 0 ) {
+   	      $(row).addClass( 'important' );
+   	    }
+   	  } */
     });
   });
 </script>

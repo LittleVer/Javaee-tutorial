@@ -130,6 +130,18 @@
 	        <artifactId>javax.servlet-api</artifactId>
 	        <version>4.0.0-b03</version>
 	    </dependency>
+	    
+	    <!-- jsr303表单验证 -->
+	    <dependency>
+		    <groupId>javax.validation</groupId>
+		    <artifactId>validation-api</artifactId>
+		    <version>1.1.0.Final</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.hibernate</groupId>
+		    <artifactId>hibernate-validator</artifactId>
+		    <version>5.2.4.Final</version>
+		</dependency>
 
         <!--mybatis相关包-->
         <dependency>

@@ -1,7 +1,10 @@
 package com.entity;
 
+import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
+
+import com.validator.Equal;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,9 +13,13 @@ import java.util.List;
  * Created by c0de8ug on 16-2-9.
  */
 public class User {
+	
     String username; //用户名
+    @NotBlank
     String userId;
     String password;
+    @Equal
+    String[] passwords;
     String salt;
     private List<Long> roleIds; //拥有的角色列表
     private Boolean locked = Boolean.FALSE;
@@ -66,12 +73,19 @@ public class User {
         this.salt = salt;
     }
 
-
     public String getCredentialsSalt() {
         return username + salt;
     }
 
-    public String getRoleIdsStr() {
+	public String[] getPasswords() {
+		return passwords;
+	}
+
+	public void setPasswords(String[] passwords) {
+		this.passwords = passwords;
+	}
+
+	public String getRoleIdsStr() {
         if (CollectionUtils.isEmpty(roleIds)) {
             return "";
         }

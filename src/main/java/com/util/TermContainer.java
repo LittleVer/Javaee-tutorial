@@ -1,7 +1,6 @@
 package com.util;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
@@ -12,10 +11,8 @@ import org.springframework.stereotype.Component;
 /**
  * Created by c0de8ug on 16-2-15.
  */
-//TODO 这个类的名字..!!呵呵,实在想不到了
 @Component
 public class TermContainer {
-    //TODO 这个volatile用的好像很蠢...一个月一次目测不会出事。。
     static List<Term> termList;
     static Date beginTime;
     static HashMap<String, String> map = new HashMap<>();
