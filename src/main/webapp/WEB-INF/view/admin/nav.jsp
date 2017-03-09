@@ -31,6 +31,9 @@
     <!-- custom Fonts -->
     <link href="${pageContext.request.contextPath}/bower_components/font-awesome/css/font-awesome.min.css"
           rel="stylesheet" type="text/css">
+          
+    <link href="${pageContext.request.contextPath}/bower_components/bootstrap-select-master/dist/css/bootstrap-select.min.css"
+          rel="stylesheet" type="text/css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you util the page via file:// -->
@@ -89,7 +92,7 @@
             	<shiro:hasRole name="admin">
                 <ul class="nav" id="side-menu">
                     <li>
-                        <a href="${pageContext.request.contextPath}/main.do/admin"><i class="fa fa-book fa-fw"></i> 控制面板</a>
+                        <a href="${pageContext.request.contextPath}/main.do/admin"><i class="fa fa-book fa-fw"></i> 首页</a>
                     </li>
                     <li>
                         <a href="${pageContext.request.contextPath}/user.do/user.view"><i class="fa fa-book fa-fw"></i> 用户管理</a>

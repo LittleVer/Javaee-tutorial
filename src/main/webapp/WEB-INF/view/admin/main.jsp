@@ -6,30 +6,106 @@
 <div id="page-wrapper">
 	<div class="container-fluid">
 		<div>
-			<h1 class="page-header">控制面板</h1>
+			<h1 class="page-header">首页</h1>
 		</div>
 		<div class="panel-heading"></div>
 		<div class="row">
 			<div class="col-lg-12">
-				<div class="panel panel-default">
-					<div class="panel-heading">控制面板</div>
-					<!-- /.panel-heading -->
-					<div class="panel-body">
-						<div class="dataTable_wrapper"></div>
-						<!-- /.table-responsive -->
-					</div>
-					<!-- /.panel-body -->
-				</div>
-				<!-- /.panel -->
+				<div class="row">
+	                <div class="col-lg-4">
+	                    <div class="panel panel-default">
+	                        <div class="panel-heading">
+	                            Default Panel
+	                        </div>
+	                        <div class="panel-body">
+	                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan. Aliquam ornare lacus adipiscing, posuere lectus et, fringilla augue.</p>
+	                        </div>
+	                        <div class="panel-footer">
+	                            Panel Footer
+	                        </div>
+	                    </div>
+	                </div>
+	                <!-- /.col-lg-4 -->
+	                <div class="col-lg-4">
+	                    <div class="panel panel-primary">
+	                        <div class="panel-heading">
+	                            Primary Panel
+	                        </div>
+	                        <div class="panel-body">
+	                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan. Aliquam ornare lacus adipiscing, posuere lectus et, fringilla augue.</p>
+	                        </div>
+	                        <div class="panel-footer">
+	                            Panel Footer
+	                        </div>
+	                    </div>
+	                </div>
+	                <!-- /.col-lg-4 -->
+	                <div class="col-lg-4">
+	                    <div class="panel panel-success">
+	                        <div class="panel-heading">
+	                            Success Panel
+	                        </div>
+	                        <div class="panel-body">
+	                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan. Aliquam ornare lacus adipiscing, posuere lectus et, fringilla augue.</p>
+	                        </div>
+	                        <div class="panel-footer">
+	                            Panel Footer
+	                        </div>
+	                    </div>
+	                </div>
+	                <!-- /.col-lg-4 -->
+	            </div>
+				<div class="row">
+	                <div class="col-lg-4">
+	                    <div class="panel panel-default">
+	                        <div class="panel-heading">
+	                            Default Panel
+	                        </div>
+	                        <div class="panel-body">
+	                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan. Aliquam ornare lacus adipiscing, posuere lectus et, fringilla augue.</p>
+	                        </div>
+	                        <div class="panel-footer">
+	                            Panel Footer
+	                        </div>
+	                    </div>
+	                </div>
+	                <!-- /.col-lg-4 -->
+	                <div class="col-lg-4">
+	                    <div class="panel panel-primary">
+	                        <div class="panel-heading">
+	                            Primary Panel
+	                        </div>
+	                        <div class="panel-body">
+	                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan. Aliquam ornare lacus adipiscing, posuere lectus et, fringilla augue.</p>
+	                        </div>
+	                        <div class="panel-footer">
+	                            Panel Footer
+	                        </div>
+	                    </div>
+	                </div>
+	                <!-- /.col-lg-4 -->
+	                <div class="col-lg-4">
+	                    <div class="panel panel-success">
+	                        <div class="panel-heading">
+	                            Success Panel
+	                        </div>
+	                        <div class="panel-body">
+	                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan. Aliquam ornare lacus adipiscing, posuere lectus et, fringilla augue.</p>
+	                        </div>
+	                        <div class="panel-footer">
+	                            Panel Footer
+	                        </div>
+	                    </div>
+	                </div>
+	                <!-- /.col-lg-4 -->
+	            </div>
+				<!-- /.table-responsive -->
 			</div>
 			<!-- /.col-lg-12 -->
-		</div>
 	</div>
 
 	<!-- /.container-fluid -->
 </div>
-</div>
-<!-- /#page-wrapper -->
 </div>
 <!-- /#wrapper -->
 <jsp:include page="/bottom.jsp"></jsp:include>

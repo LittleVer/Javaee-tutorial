@@ -10,7 +10,7 @@
         <result property="id" column="id"/>
         <result property="role" column="role"/>
         <result property="description" column="description"/>
-        <result property="resourceIdsStr" column="resourceIds"/>
+        <result property="resourceIdsStr" column="resource_ids"/>
         <result property="avaliable" column="avaliable"/>
     </resultMap>
 
@@ -27,11 +27,11 @@
         	<if test="description!=null and description!=''">
         		description=#{description},
         	</if>
-        	<if test="resourceIds!=null and resourceIds!=''">
-        		resource_ids=#{resourceIds},
+        	<if test="resourceIdsStr!=null and resourceIdsStr!=''">
+        		resource_ids=#{resourceIdsStr},
         	</if>
         </set>
-        where id={id}
+        where id=#{id}
     </update>
 
     <update id="deleteRole" parameterType="Long">

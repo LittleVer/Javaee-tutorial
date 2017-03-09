@@ -1,5 +1,17 @@
 package com.system.service.impl;
 
+import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Set;
+
+import org.apache.commons.beanutils.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.college.dao.StaffDao;
 import com.entity.Role;
 import com.entity.Staff;
@@ -11,17 +23,6 @@ import com.system.service.RoleBiz;
 import com.system.service.UserBiz;
 import com.util.PasswordHelper;
 
-import org.apache.commons.beanutils.BeanUtils;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
-import javax.annotation.Resource;
-import javax.crypto.EncryptedPrivateKeyInfo;
-
-import java.lang.reflect.InvocationTargetException;
-import java.security.KeyStore.Entry;
-import java.util.*;
-
 /**
  * Created by c0de8ug on 16-2-9.
  */
@@ -29,27 +30,27 @@ import java.util.*;
 @Service
 public class UserBizImpl implements UserBiz {
 
-    @Resource
+	@Autowired
     UserDao userDao;
 
-    @Resource
+	@Autowired
     RoleDao roleDao;
 
-    @Resource
+	@Autowired
     StaffDao staffDao;
 
-    @Resource
+	@Autowired
     private PasswordHelper passwordHelper;
-    @Resource(name = "roleBizImpl")
+	@Autowired
     private RoleBiz roleBiz;
 
     @Override
     public List<UserVo> findAll() throws InvocationTargetException, IllegalAccessException {
         List<UserVo> userVoList = new ArrayList<>();
-        List userList = userDao.findAll();
+        List<User> userList = userDao.findAll();
 
 
-        Iterator iterator = userList.iterator();
+        Iterator<User> iterator = userList.iterator();
 
         while (iterator.hasNext()) {
             StringBuilder s = new StringBuilder();
@@ -135,7 +136,7 @@ public class UserBizImpl implements UserBiz {
     public Set<String> findRoles(String username) {
         User user = findByUsername(username);
         if (user == null) {
-            return Collections.EMPTY_SET;
+            return Collections.emptySet();
         }
         return roleBiz.findRoles(user.getRoleIds().toArray(new Long[0]));
     }
@@ -144,7 +145,7 @@ public class UserBizImpl implements UserBiz {
     public Set<String> findPermissions(String username) {
         User user = findByUsername(username);
         if (user == null) {
-            return Collections.EMPTY_SET;
+            return Collections.emptySet();
         }
         return roleBiz.findPermissions(user.getRoleIds().toArray(new Long[0]));
     }

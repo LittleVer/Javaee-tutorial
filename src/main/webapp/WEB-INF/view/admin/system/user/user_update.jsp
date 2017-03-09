@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <jsp:include page="/WEB-INF/view/admin/nav.jsp"></jsp:include>
 
 <!-- Page Content -->
@@ -27,10 +28,10 @@
                                 <label>新密码</label>
                                 <input class="form-control" name="password" type="password">
                                 <input name="salt" type="hidden" value="${user.salt} ">
-                                <label>角色列表(按住Ctrl或shift键多选)</label>
-                                <select multiple="true" class="form-control" name="roleIds">
+                                <label>角色列表</label>
+                                <select multiple class="selectpicker form-control" name="roleIds">
                                     <c:forEach var="role" items="${roleList}">
-                                        <option value="${role.id}">${role.description}</option>
+                                        <option value="${role.id}" <c:if test="${fn:contains(user.roleIds,role.id)}">selected</c:if>>${role.description}</option>
                                     </c:forEach>
                                 </select>
                                 <label></label>

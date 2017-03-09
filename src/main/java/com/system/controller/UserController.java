@@ -1,21 +1,16 @@
 package com.system.controller;
 
+import java.lang.reflect.InvocationTargetException;
+
+import org.apache.shiro.authz.annotation.RequiresRoles;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+
 import com.entity.User;
 import com.system.service.RoleBiz;
 import com.system.service.UserBiz;
-
-import org.apache.shiro.authz.annotation.RequiresRoles;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.validation.Valid;
-
-import java.lang.reflect.InvocationTargetException;
 
 /**
  * Created by c0de8ug on 16-2-9.
@@ -26,10 +21,10 @@ import java.lang.reflect.InvocationTargetException;
 @RequestMapping("user.do")
 public class UserController {
 
-    @Resource(name = "userBizImpl")
+	@Autowired
     private UserBiz userBiz;
 
-    @Resource(name = "roleBizImpl")
+	@Autowired
     private RoleBiz roleBiz;
 
     @RequiresRoles("admin")

@@ -24,11 +24,11 @@
                                 <label>用户名</label>
                                 <input class="form-control" name="userId">
                                 <label>密码</label>
-                                <input class="form-control" name="password" type="password">
-                                <label>角色列表(按住Ctrl或shift键多选)</label>
-                                <select multiple="true" class="form-control" name="roleIds">
-                                    <c:forEach var="role" items="${roleList}">
-                                        <option value="${role.id}">${role.description}</option>
+                                <input multiple class="selectpicker form-control" name="password" type="password">
+                                <label>角色列表</label>
+                                <select multiple="true" class="form-control" name="resrouceIds">
+                                    <c:forEach var="resource" items="${resourceList}">
+                                        <option value="${resource.id}">${resource.name}</option>
                                     </c:forEach>
                                 </select>
 

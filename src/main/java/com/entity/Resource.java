@@ -1,6 +1,7 @@
 package com.entity;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * <p>User: Zhang Kaitao
@@ -12,8 +13,7 @@ public class Resource implements Serializable {
     private String name; //资源名称
     private String permission; //权限字符串
     private Boolean available = Boolean.FALSE;
-
-
+    private List<ResourceType> resourceTypes;
 
     public Long getId() {
         return id;
@@ -46,7 +46,15 @@ public class Resource implements Serializable {
     public void setAvailable(Boolean available) {
         this.available = available;
     }
-    @Override
+    public List<ResourceType> getResourceTypes() {
+		return resourceTypes;
+	}
+
+	public void setResourceTypes(List<ResourceType> resourceTypes) {
+		this.resourceTypes = resourceTypes;
+	}
+
+	@Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;

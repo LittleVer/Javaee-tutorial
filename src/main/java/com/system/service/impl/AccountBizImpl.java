@@ -1,7 +1,6 @@
 package com.system.service.impl;
 
-import javax.annotation.Resource;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.entity.User;
@@ -15,10 +14,10 @@ import com.util.PasswordHelper;
 @Service
 public class AccountBizImpl implements AccountBiz {
 
-    @Resource
+	@Autowired
     UserDao userDao;
     
-    @Resource
+    @Autowired
     private PasswordHelper passwordHelper;
 
     @Override

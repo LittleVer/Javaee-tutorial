@@ -4,9 +4,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import javax.annotation.Resource;
-
 import org.apache.commons.lang.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.entity.Role;
@@ -23,9 +22,9 @@ import com.system.service.RoleBiz;
 @Service
 public class RoleBizImpl implements RoleBiz {
 
-    @Resource
+	@Autowired
     private RoleDao roleDao;
-    @Resource(name = "resourceBizImpl")
+	@Autowired
     private ResourceBiz resourceBiz;
 
     public void createRole(Role role) {
@@ -50,8 +49,8 @@ public class RoleBizImpl implements RoleBiz {
         List<Role> list = roleDao.findAll();
         for(Role role : list) {
         	if(StringUtils.isEmpty(role.getResourceIdsStr())) continue;
-        	Set<String> set = resourceBiz.findPermissions(Sets.newHashSet(role.getResourceIds()));
-        	role.setResourceIdsStr(StringUtils.join(set.iterator(), ","));
+        	Set<String> set = resourceBiz.findPermissionNames(Sets.newHashSet(role.getResourceIds()));
+        	role.setResourceNames(StringUtils.join(set.iterator(), ","));
         }
         return list;
     }

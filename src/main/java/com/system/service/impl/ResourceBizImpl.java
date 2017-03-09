@@ -1,17 +1,18 @@
 package com.system.service.impl;
 
-import com.entity.Resource;
-import com.system.dao.ResourceDao;
-import com.system.service.ResourceBiz;
-
-import org.apache.shiro.authz.permission.WildcardPermission;
-import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
-
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
+import org.apache.shiro.authz.permission.WildcardPermission;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
+
+import com.entity.Resource;
+import com.system.dao.ResourceDao;
+import com.system.service.ResourceBiz;
 
 /**
  * <p>User: Zhang Kaitao
@@ -21,7 +22,7 @@ import java.util.Set;
 @Service
 public class ResourceBizImpl implements ResourceBiz {
 
-    @javax.annotation.Resource
+	@Autowired
     private ResourceDao resourceDao;
 
     @Override
@@ -59,6 +60,18 @@ public class ResourceBizImpl implements ResourceBiz {
             }
         }
         return permissions;
+    }
+    
+    @Override
+    public Set<String> findPermissionNames(Set<Long> resourceIds) {
+        Set<String> names = new HashSet<String>();
+        for (Long resourceId : resourceIds) {
+            Resource resource = findOne(resourceId);
+            if (resource != null && !StringUtils.isEmpty(resource.getPermission())) {
+            	names.add(resource.getName());
+            }
+        }
+        return names;
     }
 
     @Override

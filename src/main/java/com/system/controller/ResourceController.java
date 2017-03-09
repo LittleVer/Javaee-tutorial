@@ -1,10 +1,8 @@
 package com.system.controller;
 
-import javax.annotation.Resource;
-
 import org.apache.log4j.Logger;
 import org.apache.shiro.authz.annotation.RequiresRoles;
-import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,7 +19,7 @@ import com.system.service.ResourceBiz;
 public class ResourceController {
 	Logger log = Logger.getLogger(ResourceController.class);
 
-    @Resource(name = "resourceBizImpl")
+	 @Autowired
     private ResourceBiz resourceBiz;
 
     @RequiresRoles("admin")

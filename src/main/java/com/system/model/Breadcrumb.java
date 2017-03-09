@@ -1,6 +1,8 @@
 package com.system.model;
 
-public class Breadcrumb {
+import java.io.Serializable;
+
+public class Breadcrumb implements Serializable {
 	private String name;
 	private String view;
 	public Breadcrumb() {

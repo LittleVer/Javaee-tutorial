@@ -34,9 +34,10 @@
                                     <tr>
                                         <td>${role.role}</td>
                                         <td>${role.description}</td>
-                                        <td>${role.resourceIdsStr}</td>
+                                        <td>${role.resourceNames}</td>
                                         <td>
-                                            <a href="${pageContext.request.contextPath}/role.do/delete?id=${role.id}"
+                                            <a href="${pageContext.request.contextPath}/role.do/role_update.view?id=${role.id}">修改</a>
+                                            &nbsp;<a href="${pageContext.request.contextPath}/role.do/delete?id=${role.id}"
                                                onclick="return confirm('是否要删除该角色')">删除</a>
                                         </td>
                                     </tr>

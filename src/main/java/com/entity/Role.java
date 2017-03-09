@@ -18,6 +18,7 @@ public class Role implements Serializable {
     private String description; //角色描述,UI界面显示使用
     private List<Long> resourceIds; //拥有的资源
     private String resourceIdsStr; //拥有的资源
+    private String resourceNames; //拥有资源名称
     private Boolean available = Boolean.FALSE; //是否可用,如果不可用将不会添加给用户
 
     public Role() {
@@ -83,6 +84,8 @@ public class Role implements Serializable {
 
     public void setResourceIdsStr(String resourceIdsStr) {
         this.resourceIdsStr = resourceIdsStr;
+        parseScrToLongList(resourceIdsStr);
+        
     }
 
     public void parseScrToLongList(String resourceIdsStr) {
@@ -106,7 +109,15 @@ public class Role implements Serializable {
         this.available = available;
     }
 
-    @Override
+    public String getResourceNames() {
+		return resourceNames;
+	}
+
+	public void setResourceNames(String resourceNames) {
+		this.resourceNames = resourceNames;
+	}
+
+	@Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;

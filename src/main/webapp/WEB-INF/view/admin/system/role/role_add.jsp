@@ -15,7 +15,7 @@
             <div class="col-lg-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        用户信息
+                        角色信息
                     </div>
                     <!-- /.panel-heading -->
                     <div class="panel-body">
@@ -25,8 +25,12 @@
                                 <input class="form-control" name="role">
                                 <label>角色描述</label>
                                 <input class="form-control" name="description">
-                                <%--<label>拥有的资源</label>--%>
-                                <%--<input class="form-control" name="resourceIds">--%>
+                                <label>权限列表</label>
+                                <select multiple class="selectpicker form-control" name="resourceIds">
+                                    <c:forEach var="resource" items="${resourceList}">
+                                        <option value="${resource.id}">${resource.name}</option>
+                                    </c:forEach>
+                                </select>
                                 <label></label>
                                 <button type="submit"
                                         class="btn btn-primary form-control">添加

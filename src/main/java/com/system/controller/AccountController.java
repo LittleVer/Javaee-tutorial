@@ -1,9 +1,9 @@
 package com.system.controller;
 
-import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
 import org.apache.shiro.authz.annotation.RequiresAuthentication;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -16,7 +16,7 @@ import com.system.service.AccountBiz;
 
 @RequestMapping("account.do")
 public class AccountController {
-    @Resource(name = "accountBizImpl")
+	@Autowired
     private AccountBiz accountBiz;
 
     @RequiresAuthentication

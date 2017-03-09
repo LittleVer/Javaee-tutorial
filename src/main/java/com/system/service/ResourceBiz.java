@@ -34,4 +34,5 @@ public interface ResourceBiz {
      * @return
      */
     List<Resource> findMenus(Set<String> permissions);
+	Set<String> findPermissionNames(Set<Long> resourceIds);
 }

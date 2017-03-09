@@ -1,8 +1,7 @@
 package com.system.controller;
 
-import javax.annotation.Resource;
-
 import org.apache.shiro.authz.annotation.RequiresRoles;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,10 +20,10 @@ import com.system.service.RoleBiz;
 public class RoleController {
 
 
-    @Resource(name = "roleBizImpl")
+	@Autowired
     private RoleBiz roleBiz;
 
-    @Resource(name = "resourceBizImpl")
+    @Autowired
     private ResourceBiz resourceBiz;
 
     @RequiresRoles("admin")
@@ -37,8 +36,16 @@ public class RoleController {
     @RequiresRoles("admin")
     @RequestMapping("role_add.view")
     public String roleAddView(Model model) {
-        model.addAttribute("roleList", roleBiz.findAll());
+    	model.addAttribute("resourceList", resourceBiz.findAll());
         return "/admin/system/role/role_add";
+    }
+    
+    @RequiresRoles("admin")
+    @RequestMapping("role_update.view")
+    public String roleUpdateView(Long id,Model model) {
+    	model.addAttribute("role", roleBiz.findOne(id));
+    	model.addAttribute("resourceList", resourceBiz.findAll());
+    	return "/admin/system/role/role_update";
     }
 
     @RequiresRoles("admin")
@@ -46,6 +53,13 @@ public class RoleController {
     public String add(Role role, RedirectAttributes redirectAttributes) {
         roleBiz.createRole(role);
         return "redirect:/role.do/role.view";
+    }
+    
+    @RequiresRoles("admin")
+    @RequestMapping("update")
+    public String update(Role role, RedirectAttributes redirectAttributes) {
+    	roleBiz.updateRole(role);
+    	return "redirect:/role.do/role.view";
     }
 
     @RequiresRoles("admin")
