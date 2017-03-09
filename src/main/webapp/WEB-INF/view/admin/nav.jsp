@@ -92,11 +92,11 @@
                         <a href="${pageContext.request.contextPath}/role.do/role.view"><i class="fa fa-book fa-fw"></i> 角色管理</a>
                     </li>
                     <li>
-                        <a href="#"><i class="fa fa-wrench fa-fw"></i> 学院管理<span class="fa arrow"></span></a>
+                        <a href="${pageContext.request.contextPath}/resource.do/resource.view"><i class="fa fa-book fa-fw"></i> 权限管理</a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-wrench fa-fw"></i> 车辆管理<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
-                            <li>
-                                <a href="/"> 整体概况</a>
-                            </li>
                             <li>
                                 <a href="${pageContext.request.contextPath}/dept.do/dept.view"> 系部设置</a>
                             </li>

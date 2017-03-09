@@ -25,9 +25,7 @@
                                     <th>用户名</th>
                                     <th>密码</th>
                                     <th>权限</th>
-                                    <th>邮箱</th>
-                                    <%--<th></th>--%>
-                                    <th></th>
+                                    <th>操作</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -36,10 +34,9 @@
                                         <td>${user.userId}</td>
                                         <td>${user.password}</td>
                                         <td>${user.roleIdsStr}</td>
-                                        <td>email</td>
-                                            <%--<td><a href="${pageContext.request.contextPath}/user.do/findById?id=${user.userId}">修改</a></td>--%>
                                         <td>
-                                            <a href="${pageContext.request.contextPath}/user.do/delete?id=${user.userId}"
+                                        	<a href="${pageContext.request.contextPath}/user.do/findById?id=${user.userId}">修改</a>
+                                            &nbsp;<a href="${pageContext.request.contextPath}/user.do/delete?id=${user.userId}"
                                                onclick="return confirm('是否要删除该用户')">删除</a>
                                         </td>
                                     </tr>

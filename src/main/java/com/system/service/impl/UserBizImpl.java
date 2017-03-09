@@ -16,8 +16,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import javax.crypto.EncryptedPrivateKeyInfo;
 
 import java.lang.reflect.InvocationTargetException;
+import java.security.KeyStore.Entry;
 import java.util.*;
 
 /**
@@ -86,6 +88,10 @@ public class UserBizImpl implements UserBiz {
 
     @Override
     public void update(User user) {
+    	if(user.getPassword()!=null) {
+    		String newPw = passwordHelper.encryptPassword(user.getPassword(), user.getSalt());
+    		user.setPassword(newPw);
+    	}
         userDao.update(user);
     }
 

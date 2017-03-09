@@ -1,18 +1,19 @@
 package com.system.service.impl;
 
-import com.entity.Role;
-import com.system.dao.RoleDao;
-import com.system.service.ResourceBiz;
-import com.system.service.RoleBiz;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import javax.annotation.Resource;
-
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
+import javax.annotation.Resource;
+
+import org.apache.commons.lang.StringUtils;
+import org.springframework.stereotype.Service;
+
+import com.entity.Role;
+import com.google.common.collect.Sets;
+import com.system.dao.RoleDao;
+import com.system.service.ResourceBiz;
+import com.system.service.RoleBiz;
 
 /**
  * <p>User: Zhang Kaitao
@@ -32,7 +33,7 @@ public class RoleBizImpl implements RoleBiz {
     }
 
     public void updateRole(Role role) {
-         roleDao.updateRole(role);
+        roleDao.updateRole(role);
     }
 
     public void deleteRole(Long roleId) {
@@ -46,7 +47,13 @@ public class RoleBizImpl implements RoleBiz {
 
     @Override
     public List<Role> findAll() {
-        return roleDao.findAll();
+        List<Role> list = roleDao.findAll();
+        for(Role role : list) {
+        	if(StringUtils.isEmpty(role.getResourceIdsStr())) continue;
+        	Set<String> set = resourceBiz.findPermissions(Sets.newHashSet(role.getResourceIds()));
+        	role.setResourceIdsStr(StringUtils.join(set.iterator(), ","));
+        }
+        return list;
     }
 
     @Override

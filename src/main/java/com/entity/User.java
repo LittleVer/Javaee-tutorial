@@ -18,7 +18,6 @@ public class User {
     @NotBlank
     String userId;
     String password;
-    @Equal
     String[] passwords;
     String salt;
     private List<Long> roleIds; //拥有的角色列表

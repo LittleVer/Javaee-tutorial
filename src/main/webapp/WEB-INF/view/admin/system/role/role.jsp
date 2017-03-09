@@ -24,7 +24,7 @@
                                 <tr>
                                     <th>角色名称</th>
                                     <th>角色描述</th>
-                                    <th>拥有的资源</th>
+                                    <th>权限</th>
                                     <th>操作</th>
                                 </tr>
                                 </thead>

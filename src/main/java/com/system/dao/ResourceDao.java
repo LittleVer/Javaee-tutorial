@@ -1,9 +1,9 @@
 package com.system.dao;
 
 
-import com.entity.Resource;
-
 import java.util.List;
+
+import com.entity.Resource;
 
 /**
  * <p>Resource: Zhang Kaitao
@@ -12,7 +12,7 @@ import java.util.List;
  */
 public interface ResourceDao {
 
-    public Resource createResource(Resource resource);
+    public void createResource(Resource resource);
 
     public Resource updateResource(Resource resource);
 

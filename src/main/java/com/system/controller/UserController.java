@@ -49,8 +49,8 @@ public class UserController {
     @RequiresRoles("admin")
     @RequestMapping("findById")
     public String findById(String id, Model m) {
-        //todo 这里要做非空判断
         m.addAttribute("user", userBiz.findById(id));
+        m.addAttribute("roleList", roleBiz.findAll());
         return "/admin/system/user/user_update";
     }
 

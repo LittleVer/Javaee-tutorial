@@ -9,6 +9,11 @@
     <packaging>war</packaging>
     <name>giit</name>
     <url>http://maven.apache.org</url>
+    
+    <properties>
+    	<spring.version>4.3.7.RELEASE</spring.version>
+    	<shiro.version>1.4.0-RC2</shiro.version>
+    </properties>
 
 	<repositories>
 		<repository>
@@ -41,27 +46,27 @@
         <dependency>
             <groupId>org.apache.shiro</groupId>
             <artifactId>shiro-core</artifactId>
-            <version>1.2.4</version>
+            <version>${shiro.version}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.shiro</groupId>
             <artifactId>shiro-web</artifactId>
-            <version>1.2.4</version>
+            <version>${shiro.version}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.shiro</groupId>
             <artifactId>shiro-quartz</artifactId>
-            <version>1.2.4</version>
+            <version>${shiro.version}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.shiro</groupId>
             <artifactId>shiro-spring</artifactId>
-            <version>1.2.4</version>
+            <version>${shiro.version}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.shiro</groupId>
             <artifactId>shiro-aspectj</artifactId>
-            <version>1.2.4</version>
+            <version>${shiro.version}</version>
         </dependency>
 
         <!--mysql数据库连接-->
@@ -88,30 +93,36 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-test</artifactId>
-            <version>4.2.4.RELEASE</version>
+            <version>${spring.version}</version>
             <scope>test</scope>
+            <exclusions>
+            	<exclusion>
+            		<artifactId>commons-logging</artifactId>
+            		<groupId>commons-logging</groupId>
+            	</exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context-support</artifactId>
-            <version>4.2.4.RELEASE</version>
+            <version>${spring.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-jdbc</artifactId>
-            <version>4.2.4.RELEASE</version>
+            <version>${spring.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-tx</artifactId>
-            <version>4.2.4.RELEASE</version>
+            <version>${spring.version}</version>
         </dependency>
 
         <!--springmvc-->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-webmvc</artifactId>
-            <version>4.2.4.RELEASE</version>
+            <version>${spring.version}</version>
         </dependency>
 
         <!--servlet,jsp,jstl-->
@@ -160,10 +171,20 @@
             <version>3.2.0</version>
         </dependency>
         <dependency>
+		    <groupId>org.slf4j</groupId>
+		    <artifactId>jcl-over-slf4j</artifactId>
+		    <version>1.7.12</version>
+		</dependency>
+        <!-- <dependency>
             <groupId>commons-logging</groupId>
             <artifactId>commons-logging</artifactId>
             <version>1.2</version>
-        </dependency>
+        </dependency> -->
+        <dependency>  
+		    <groupId>org.bgee.log4jdbc-log4j2</groupId>  
+		    <artifactId>log4jdbc-log4j2-jdbc4.1</artifactId>  
+		    <version>1.16</version>  
+		</dependency>  
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
@@ -205,7 +226,28 @@
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-dbcp2</artifactId>
             <version>2.1</version>
+            <exclusions>
+            	<exclusion>
+            		<artifactId>commons-logging</artifactId>
+            		<groupId>commons-logging</groupId>
+            	</exclusion>
+            </exclusions>
         </dependency>
+        <dependency>
+			<groupId>commons-collections</groupId>
+			<artifactId>commons-collections</artifactId>
+			<version>3.2.2</version>
+		</dependency>
+        <dependency>
+			<groupId>commons-lang</groupId>
+			<artifactId>commons-lang</artifactId>
+			<version>2.6</version>
+		</dependency>
+		<dependency>
+		    <groupId>com.google.guava</groupId>
+		    <artifactId>guava</artifactId>
+		    <version>20.0</version>
+		</dependency>
 
         <!--json parser-->
         <dependency>

@@ -6,7 +6,7 @@
 <div id="page-wrapper">
     <div class="container-fluid">
         <div>
-            <h1 class="page-header">用户管理</h1>
+            <h1 class="page-header">权限管理</h1>
         </div>
         <div class="panel-heading">
         </div>
@@ -14,7 +14,7 @@
             <div class="col-lg-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        用户信息
+                        权限信息
                     </div>
                     <!-- /.panel-heading -->
                     <div class="panel-body">
@@ -22,30 +22,26 @@
                             <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                                 <thead>
                                 <tr>
-                                    <th>角色名称</th>
-                                    <th>角色描述</th>
-                                    <th>拥有的资源</th>
+                                    <th>权限名称</th>
+                                    <th>权限</th>
                                     <th>操作</th>
-                                    <th></th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <c:forEach var="role" items="${roleList}">
+                                <c:forEach var="resource" items="${resourceList}">
                                     <tr>
-                                        <td>${role}</td>
-                                        <td>${role}</td>
-                                        <td>${role}</td>
-                                        <td>${role}</td>
+                                        <td>${resource.name}</td>
+                                        <td>${resource.permission}</td>
                                         <td>
-                                            <a href="${pageContext.request.contextPath}/role.do/delete?id=${role.roleId}"
-                                               onclick="return confirm('是否要删除该角色')">删除</a>
+                                            <a href="${pageContext.request.contextPath}/resource.do/delete?id=${resource.id}"
+                                               onclick="return confirm('是否要删除该权限')">删除</a>
                                         </td>
                                     </tr>
                                 </c:forEach>
                                 </tbody>
                             </table>
-                            <a href="${pageContext.request.contextPath}/role.do/role_add.view" class="btn btn-primary"
-                               role="button">添加角色</a>
+                            <a href="${pageContext.request.contextPath}/resource.do/resource_add.view" class="btn btn-primary"
+                               role="button">添加权限</a>
                         </div>
                         <!-- /.table-responsive -->
                     </div>

@@ -25,8 +25,8 @@ public class ResourceBizImpl implements ResourceBiz {
     private ResourceDao resourceDao;
 
     @Override
-    public Resource createResource(Resource resource) {
-        return resourceDao.createResource(resource);
+    public void createResource(Resource resource) {
+        resourceDao.createResource(resource);
     }
 
     @Override
@@ -46,7 +46,7 @@ public class ResourceBizImpl implements ResourceBiz {
 
     @Override
     public List<Resource> findAll() {
-        return resourceDao.findAll();
+    	return resourceDao.findAll();
     }
 
     @Override
@@ -66,12 +66,6 @@ public class ResourceBizImpl implements ResourceBiz {
         List<Resource> allResources = findAll();
         List<Resource> menus = new ArrayList<Resource>();
         for (Resource resource : allResources) {
-            if (resource.isRootNode()) {
-                continue;
-            }
-            if (resource.getType() != Resource.ResourceType.menu) {
-                continue;
-            }
             if (!hasPermission(permissions, resource)) {
                 continue;
             }

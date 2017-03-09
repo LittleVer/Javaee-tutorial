@@ -14,7 +14,7 @@ import java.util.Set;
 public interface ResourceBiz {
 
 
-    public Resource createResource(Resource resource);
+    public void createResource(Resource resource);
     public Resource updateResource(Resource resource);
     public void deleteResource(Long resourceId);
 

@@ -6,9 +6,9 @@ import org.springframework.stereotype.Component;
 /**
  * Created by c0de8ug on 16-2-15.
  */
-@Component
+//@Component
 public class TaskJob {
-    @Scheduled(cron = "0 0 0 1 * ?")
+    //@Scheduled(cron = "0 0 0 1 * ?")
     public void job() {
         TermContainer.update();
     }

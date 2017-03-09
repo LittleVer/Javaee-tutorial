@@ -5,5 +5,35 @@
 
 
 <mapper namespace="com.system.dao.ResourceDao">
-
+	<resultMap id="resource_map" type="Resource">
+        <result property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="permission" column="permission"/>
+        <result property="available" column="available"/>
+    </resultMap>
+	<insert id="createResource" parameterType="Resource">
+		INSERT INTO RESOURCE (name, permission, available) VALUES
+			(#{name}, #{permission},1);
+	</insert>
+	<update id="updateResource" parameterType="Resource">
+		UPDATE RESOURCE
+		<set>
+			<if test="name!=null and name!=''">
+				name = #{name},
+			</if>
+			<if test="permission!=null and permission!=''">
+				permission = #{permission},
+			</if>
+		</set>
+		WHERE id=#{id}
+	</update>
+	<update id="deleteResource" parameterType="long">
+		UPDATE RESOURCE set available=0 where id=#{id}
+	</update>
+	<select id="findOne" parameterType="long" resultMap="resource_map">
+		SELECT id,name,permission,available FROM RESOURCE where id=#{id}
+	</select>
+	<select id="findAll" resultMap="resource_map">
+		SELECT id,name,permission,available FROM RESOURCE where available=1
+	</select>
 </mapper>

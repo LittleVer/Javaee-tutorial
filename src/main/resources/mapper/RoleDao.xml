@@ -15,16 +15,28 @@
     </resultMap>
 
     <insert id="createRole" parameterType="Role">
-        INSERT INTO role(role,description,resource_ids,available) VALUES(#{role},#{description},#{resourceIdsStr},#{available})
+        INSERT INTO role(role,description,resource_ids,available) VALUES(#{role},#{description},#{resourceIdsStr}, 1)
     </insert>
 
     <update id="updateRole" parameterType="Role">
-        UPDATE role SET role=#{role}, description=#{description}, resource_ids=#{resourceIde}, available=#{avaliable} where id={id}
+        UPDATE role 
+        <set>
+        	<if test="role!=null and role!=''">
+        		role=#{role},
+        	</if>
+        	<if test="description!=null and description!=''">
+        		description=#{description},
+        	</if>
+        	<if test="resourceIds!=null and resourceIds!=''">
+        		resource_ids=#{resourceIds},
+        	</if>
+        </set>
+        where id={id}
     </update>
 
-    <delete id="deleteRole" parameterType="Long">
-        DELETE FROM role where id=#{id}
-    </delete>
+    <update id="deleteRole" parameterType="Long">
+        update role set available=0 where id=#{id}
+    </update>
 
     <select id="findOne" parameterType="Long" resultMap="role_map">
         SELECT id, role, description, resource_ids, available FROM role WHERE id=#{id}
@@ -32,7 +44,7 @@
 
     <!--TODO 写死了有问题-->
     <select id="findAll" resultMap="role_map">
-        SELECT id, role, description, resource_ids , available FROM role WHERE role.id != 1
+        SELECT id, role, description, resource_ids , available FROM role WHERE role.id != 1 and available = 1
     </select>
     <select id="findByDescription" parameterType="String" resultMap="role_map">
         SELECT id, role, description, resource_ids, available FROM role WHERE description=#{description}

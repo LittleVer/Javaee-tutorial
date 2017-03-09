@@ -22,7 +22,16 @@
     </select>
 
     <update id="update" parameterType="User">
-        UPDATE user SET password = #{password} ,authority = #{authority} WHERE user_id = #{userId}
+        UPDATE user 
+        <set>
+        	<if test="password!=null and password!=''">
+        		password = #{password},
+        	</if>
+        	<if test="roleIdsStr!=null and roleIdsStr!=''">
+        		role_ids = #{roleIdsStr},
+        	</if>
+        </set>
+         WHERE user_id = #{userId}
     </update>
 
     <update id="updatePassword" parameterType="map">
