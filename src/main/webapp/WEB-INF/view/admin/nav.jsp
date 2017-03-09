@@ -38,7 +38,13 @@
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-
+	
+	<style>
+		.breadcrumb {
+		    margin: 5px 0px -20px -5px;
+		    background-color: #f8f8f8;
+	    }
+	</style>
 </head>
 <body>
 

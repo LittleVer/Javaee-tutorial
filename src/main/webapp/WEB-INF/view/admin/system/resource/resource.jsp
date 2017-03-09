@@ -5,6 +5,7 @@
 <!-- Page Content -->
 <div id="page-wrapper">
     <div class="container-fluid">
+    	<jsp:include page="/breadcrumb.jsp"></jsp:include>
         <div>
             <h1 class="page-header">权限管理</h1>
         </div>

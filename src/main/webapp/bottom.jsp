@@ -17,7 +17,6 @@
 <!-- Page-Level Demo Scripts - Tables - Use for reference -->
 <script>
   $(document).ready(function () {
-	$('#page-wrapper').prepend($('<span>').addClass('fa fa-arrow-left').text('返回'));
     $('#dataTables-example').DataTable({
       responsive: true,
       language: {
