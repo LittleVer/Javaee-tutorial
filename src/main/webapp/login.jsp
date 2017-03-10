@@ -48,10 +48,10 @@
                     <form role="form" action="${pageContext.request.contextPath}/login" method="post">
                         <fieldset>
                             <div class="form-group <c:if test="${not empty msg}">has-error</c:if>">
-                                <input class="form-control" placeholder="账户名" name="username" autofocus value="${username}">
+                                <input value="admin" class="form-control" placeholder="账户名" name="username" autofocus value="${username}">
                             </div>
                             <div class="form-group <c:if test="${not empty msg}">has-error</c:if>">
-                                <input class="form-control" placeholder="密码" name="password" type="password">
+                                <input value="123456" class="form-control" placeholder="密码" name="password" type="password">
                                 <c:if test="${not empty msg}"><span class="help-block">${msg}</span></c:if>
                             </div>
                             <div class="checkbox">

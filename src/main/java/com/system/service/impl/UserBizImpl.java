@@ -12,11 +12,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.college.dao.StaffDao;
 import com.entity.Role;
-import com.entity.Staff;
 import com.entity.User;
-import com.entity.custom.UserVo;
+import com.entity.vo.UserVo;
 import com.system.dao.RoleDao;
 import com.system.dao.UserDao;
 import com.system.service.RoleBiz;
@@ -35,9 +33,6 @@ public class UserBizImpl implements UserBiz {
 
 	@Autowired
     RoleDao roleDao;
-
-	@Autowired
-    StaffDao staffDao;
 
 	@Autowired
     private PasswordHelper passwordHelper;
@@ -99,19 +94,8 @@ public class UserBizImpl implements UserBiz {
     public void add(User user) {
         passwordHelper.encryptPassword(user);
         userDao.add(user);
-        String id = user.getUserId();
-        String teacherRoleId = roleDao.findByDescription("老师").getId().toString();
-        if (user.getRoleIdsStr().indexOf(teacherRoleId) != -1) {
-            Staff staff = new Staff();
-            staff.setStaffId(id);
-            staff.setStaffName(id);
-            staffDao.add(staff);
-        }
-
-
     }
 
-    //TODO 删除staff和student连带的功能未完成
     @Transactional
     @Override
     public void delete(String id) {

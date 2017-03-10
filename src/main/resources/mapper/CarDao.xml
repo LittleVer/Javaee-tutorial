@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.vm.dao.CarDao">
+
+    <resultMap id="car_map" type="Car">
+        <id property="id" column="id"/>
+        <result property="carId" column="car_id"/>
+        <result property="isSale" column="is_sale"/>
+        <result property="high" column="high"/>
+        <result property="length" column="length"/>
+        <result property="wide" column="wide"/>
+        <result property="weight" column="weight"/>
+    </resultMap>
+
+
+    <select id="find" resultMap="car_map" parameterType="Car">
+        SELECT * FROM car
+        <where>
+        	<if test="isSale!=null">
+        		is_sale=#{isSale}
+        	</if>
+        	<if test="carId!=null and carId!=''">
+        		car_id=#{carId}
+        	</if>
+        </where>
+    </select>
+
+    <select id="findById" parameterType="long" resultMap="car_map">
+        SELECT * FROM car WHERE id = #{value}
+    </select>
+
+    <update id="update" parameterType="Car">
+        UPDATE car 
+        <set>
+        	<if test="isSale!=null">
+        		is_sale=#{isSale},
+        	</if>
+        	<if test="high != null">
+        		high=#{high},
+        	</if>
+        	<if test="length != null">
+        		length=#{length},
+        	</if>
+        	<if test="wide != null">
+        		wide=#{wide},
+        	</if>
+        	<if test="weight != null">
+        		weight=#{weight},
+        	</if>
+        	<if test="carId != null and carId != ''">
+        		car_id=#{carId},
+        	</if>
+        </set>
+        WHERE id = #{id}
+    </update>
+
+    <insert id="add" parameterType="Car">
+        INSERT INTO car(is_sale,high,length,wide,weight,car_id) VALUES(#{isSale},#{high},#{length},#{wide},#{weight},#{carId})
+    </insert>
+
+    <delete id="delete" parameterType="long">
+        DELETE FROM car WHERE id = #{id}
+    </delete>
+</mapper>

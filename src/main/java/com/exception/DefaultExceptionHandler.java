@@ -20,7 +20,7 @@ public class DefaultExceptionHandler implements HandlerExceptionResolver {
     public ModelAndView resolveException(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o, Exception e) {
         ModelAndView mv = new ModelAndView();
         if (e instanceof AuthorizationException) {
-            mv.setViewName("redirect:/login");
+            mv.setViewName("unathorized");
         } else {
         	e.printStackTrace();
         	mv.setViewName("error");

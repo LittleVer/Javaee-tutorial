@@ -89,11 +89,11 @@
 
         <div class="navbar-default sidebar" role="navigation">
             <div class="sidebar-nav navbar-collapse">
-            	<shiro:hasRole name="admin">
                 <ul class="nav" id="side-menu">
                     <li>
                         <a href="${pageContext.request.contextPath}/main.do/admin"><i class="fa fa-book fa-fw"></i> 首页</a>
                     </li>
+	            	<shiro:hasRole name="admin">
                     <li>
                         <a href="${pageContext.request.contextPath}/user.do/user.view"><i class="fa fa-book fa-fw"></i> 用户管理</a>
                     </li>
@@ -103,71 +103,24 @@
                     <li>
                         <a href="${pageContext.request.contextPath}/resource.do/resource.view"><i class="fa fa-book fa-fw"></i> 权限管理</a>
                     </li>
+	                </shiro:hasRole>
                     <li>
-                        <a href="#"><i class="fa fa-wrench fa-fw"></i> 车辆管理<span class="fa arrow"></span></a>
+                        <a href="#"><i class="fa fa-wrench fa-fw"></i> 信息管理<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
+                        	<shiro:hasPermission name="standard">
                             <li>
-                                <a href="${pageContext.request.contextPath}/dept.do/dept.view"> 系部设置</a>
+                                <a href="${pageContext.request.contextPath}/standard.do/standard.view"> 规格管理</a>
                             </li>
+                        	</shiro:hasPermission>
+                        	<shiro:hasPermission name="car">
                             <li>
-                                <a href="${pageContext.request.contextPath}/spec.do/spec.view"> 专业设置</a>
+                                <a href="${pageContext.request.contextPath}/car.do/car.view"> 车辆管理</a>
                             </li>
-                            <li>
-                                <a href="${pageContext.request.contextPath}/clazz.do/clazz.view"> 班级管理</a>
-                            </li>
-                            <li>
-                                <a href="${pageContext.request.contextPath}/course.do/course.view"> 添加课程</a>
-                            </li>
-                            <li>
-                                <a href="${pageContext.request.contextPath}/section.do/section.view"> 课程安排</a>
-                            </li>
-                            <li>
-                                <a href="${pageContext.request.contextPath}/student.do/student.view"> 学生管理</a>
-                            </li>
-                            <li>
-                                <a href="${pageContext.request.contextPath}/orderbook.do/orderbook_review.view/"> 秘书审核</a>
-                            </li>
+                        	</shiro:hasPermission>
                         </ul>
                         <!-- /.nav-second-level -->
                     </li>
                 </ul>
-                </shiro:hasRole>
-                <shiro:hasRole name="student">
-                	<ul class="nav" id="side-menu">
-                    <li>
-                        <a href="${pageContext.request.contextPath}/main.do/student"> 主页</a>
-                    </li>
-                    <li>
-                        <a href="/"> 个人信息</a>
-                    </li>
-                    <li>
-                        <a href="/"> 课表</a>
-                    </li>
-                    <li>
-                        <a href="${pageContext.request.contextPath}/elective.do/elective.view"> 选课</a>
-                    </li>
-                </ul>
-                </shiro:hasRole>
-                <shiro:hasRole name="teacher">
-                	<ul class="nav" id="side-menu">
-                    <li>
-                        <a href="${pageContext.request.contextPath}/main.do/teacher"> 主页</a>
-                    </li>
-                    <li>
-                        <a href="#"> 成绩录入</a>
-                    </li>
-                    <li>
-                        <a href="${pageContext.request.contextPath}/orderbook.do/orderbook.view"> 教材添加</a>
-                    </li>
-                </ul>
-                </shiro:hasRole>
-                <shiro:hasRole name="supplier">
-               	 	<ul class="nav" id="side-menu">
-                    	<li>
-                        	<a href="${pageContext.request.contextPath}/supplier.do/supplier.view"> 采购单</a>
-                   	 	</li>
-                	</ul>
-                </shiro:hasRole>
             </div>
             <!-- /.sidebar-collapse -->
         </div>

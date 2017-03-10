@@ -49,8 +49,4 @@
 
     <!-- /.container-fluid -->
 </div>
-</div>
-<!-- /#page-wrapper -->
-</div>
-<!-- /#wrapper -->
-<jsp:include page="${request.getContextPath}/bottom.jsp"></jsp:include>
+<jsp:include page="/WEB-INF/view/admin/bottom.jsp"></jsp:include>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.vm.dao.StandardDao">
+
+    <resultMap id="standard_map" type="Standard">
+        <id property="id" column="id"/>
+        <result property="carId" column="car_id"/>
+    </resultMap>
+
+
+    <select id="find" resultMap="standard_map" parameterType="Standard">
+        SELECT * FROM standard
+        <where>
+        	<if test="carId!=null and carId!=''">
+        		car_id=#{carId}
+        	</if>
+        </where>
+    </select>
+
+    <select id="findById" parameterType="long" resultMap="standard_map">
+        SELECT * FROM standard WHERE id = #{value}
+    </select>
+
+    <update id="update" parameterType="Standard">
+        UPDATE standard 
+        <set>
+        	car_id = #{carId}
+        </set>
+        WHERE id = #{id}
+    </update>
+
+    <insert id="add" parameterType="Standard">
+        INSERT INTO standard(car_id) VALUES(#{carId})
+    </insert>
+
+    <delete id="delete" parameterType="long">
+        DELETE FROM standard WHERE id = #{id}
+    </delete>
+</mapper>

@@ -59,10 +59,6 @@
 
     <!-- /.container-fluid -->
 </div>
-</div>
-<!-- /#page-wrapper -->
-</div>
-<!-- /#wrapper -->
 
-<jsp:include page="/bottom.jsp"></jsp:include>
+<jsp:include page="/WEB-INF/view/admin/bottom.jsp"></jsp:include>
 

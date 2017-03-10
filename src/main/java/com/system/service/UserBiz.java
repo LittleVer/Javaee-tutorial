@@ -2,7 +2,7 @@ package com.system.service;
 
 
 import com.entity.User;
-import com.entity.custom.UserVo;
+import com.entity.vo.UserVo;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;

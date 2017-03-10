@@ -1,5 +1,5 @@
 eclipse.preferences.version=1
 encoding//src/main/resources/sql/populate.sql=UTF-8
-encoding//src/main/webapp/bottom.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/view/admin/bottom.jsp=UTF-8
 encoding//src/test/java=UTF-8
 encoding/src=UTF-8

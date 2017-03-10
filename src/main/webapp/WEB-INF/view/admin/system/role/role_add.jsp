@@ -20,20 +20,25 @@
                     <!-- /.panel-heading -->
                     <div class="panel-body">
                         <div class="dataTable_wrapper">
-                            <form action="${pageContext.request.contextPath}/role.do/add" method="post">
-                                <label>角色名</label>
-                                <input class="form-control" name="role">
-                                <label>角色描述</label>
-                                <input class="form-control" name="description">
-                                <label>权限列表</label>
-                                <select multiple class="selectpicker form-control" name="resourceIds">
-                                    <c:forEach var="resource" items="${resourceList}">
-                                        <option value="${resource.id}">${resource.name}</option>
-                                    </c:forEach>
+                            <form action="${pageContext.request.contextPath}/car.do/update" method="get">
+                                <label>编号</label>
+                                <input class="form-control" name="carId" required="required" value="${car.carId }">
+                                <label>是否上架</label>
+                                <select class="selectpicker form-control">
+                                	<option value="true" <c:if test="${car.isSale }">selected</c:if>>上架</option>
+                                	<option value="false" <c:if test="${not car.isSale }">selected</c:if>>下架</option>
                                 </select>
+                                <label>高</label>
+                                <input class="form-control" type="number" name="high"  value="${car.high }">
+                                <label>长</label>
+                                <input class="form-control" type="number" name="length"  value="${car.length }">
+                                <label>宽</label>
+                                <input class="form-control" type="number" name="wide"  value="${car.wide }">
+                                <label>重量</label>
+                                <input class="form-control" type="number" name="weight"  value="${car.weight }">
                                 <label></label>
                                 <button type="submit"
-                                        class="btn btn-primary form-control">添加
+                                        class="btn btn-primary form-control">修改
                                 </button>
                             </form>
                         </div>
@@ -49,12 +54,7 @@
 
     <!-- /.container-fluid -->
 </div>
-</div>
-<!-- /#page-wrapper -->
-</div>
-<!-- /#wrapper -->
 
-
-<jsp:include page="${request.getContextPath}/bottom.jsp"></jsp:include>
+<jsp:include page="/WEB-INF/view/admin/bottom.jsp"></jsp:include>
 
 

@@ -1,6 +1,7 @@
 $(document).ready(function () {
 	$('html').niceScroll({cursorcolor:"#ccc", horizrailenabled: false, enablekeyboard: false});
-    $('#dataTables-example').DataTable({
+    dataTable = $('#dataTables-example').DataTable({
+	  dom: '<"toolbar">',
       responsive: true,
       language: {
     		"srocessing":   "处理中...",
@@ -32,4 +33,6 @@ $(document).ready(function () {
    	    }
    	  } */
     });
+    
+    //$('form.searchForm').appendTo($("div.toolbar"));
   });

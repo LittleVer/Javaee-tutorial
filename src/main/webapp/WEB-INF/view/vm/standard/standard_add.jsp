@@ -4,8 +4,9 @@
 <!-- Page Content -->
 <div id="page-wrapper">
     <div class="container-fluid">
+    	<jsp:include page="/breadcrumb.jsp"></jsp:include>
         <div>
-            <h1 class="page-header">个人信息</h1>
+            <h1 class="page-header">规格管理</h1>
         </div>
         <div class="panel-heading">
         </div>
@@ -13,17 +14,21 @@
             <div class="col-lg-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        个人信息
+                        规格管理
                     </div>
                     <!-- /.panel-heading -->
                     <div class="panel-body">
                         <div class="dataTable_wrapper">
-                            <form action="${pageContext.request.contextPath}/account.do/update" method="get">
-                                <label>新密码</label>
-                                <input class="form-control" name="password" type="password">
+                            <form class="form-horizontal" action="${pageContext.request.contextPath}/standard.do/add" method="post">
+                            	<div class="form-group">
+	                                <label class="col-sm-1 control-label">编号</label>
+	                                <div class="col-sm-11">
+	                                	<input class="form-control" name="carId" required="required">
+	                                </div>
+                                </div>
                                 <label></label>
                                 <button type="submit"
-                                        class="btn btn-primary form-control">修改
+                                        class="btn btn-primary form-control">添加
                                 </button>
                             </form>
                         </div>
