@@ -20,8 +20,11 @@
 <script src="${pageContext.request.contextPath}/bower_components/bootstrap-select-master/dist/js/bootstrap-select.min.js"></script>
 <script src="${pageContext.request.contextPath}/bower_components/bootstrap-select-master/dist/js/i18n/defaults-zh_CN.min.js"></script>
 
+<script src="${pageContext.request.contextPath}/bower_components/sweetalert/sweetalert.min.js"></script>
+
 
 <script src="${pageContext.request.contextPath}/js/jquery.nicescroll.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/ajaxfileupload.js"></script>
 <script src="${pageContext.request.contextPath}/js/main.js"></script>
 </body>
 </html>

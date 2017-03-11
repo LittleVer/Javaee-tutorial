@@ -1,7 +1,7 @@
 $(document).ready(function () {
 	$('html').niceScroll({cursorcolor:"#ccc", horizrailenabled: false, enablekeyboard: false});
     dataTable = $('#dataTables-example').DataTable({
-	  dom: '<"toolbar">',
+	  //dom: '<"toolbar">',
       responsive: true,
       language: {
     		"srocessing":   "处理中...",
@@ -34,5 +34,48 @@ $(document).ready(function () {
    	  } */
     });
     
-    //$('form.searchForm').appendTo($("div.toolbar"));
+    
+    //上传控件
+    uploader = {
+		uploadUrl : null,
+		init : function() {
+			$('#uploadModal').on('hidden.bs.modal', function () {
+		    	$('.modaldownBtn').addClass('hidden')
+			});
+		    
+			$('#uploadForm').submit(function(){
+				if($('#file').val()=='') {
+					swal('通知','请选择要上传的文件','info');
+					return false;
+				}
+				$('#uploadModal').modal('hide');
+				$.ajaxFileUpload({
+					url : uploadUrl,
+					type : "POST",
+					secureuri : false,
+					fileElementId : "file",
+					dataType : "json",
+					success : function(data, status) {
+						if (data && data.resultCode == "0") {
+							swal('通知','上传成功','success');
+						} else {
+							swal('通知','上传失败','error');
+						}
+					},
+					error : function(data, status, e) {
+						swal('通知','上传失败','error');
+					}
+				});
+				return false;
+			});
+		},
+		uploadModal : function(url,tempUrl){
+	    	uploadUrl = url;
+	    	if(tempUrl!=null && tempUrl!='') {
+	    		$('.modaldownBtn').removeClass('hidden').attr('href',tempUrl);
+	    	}
+	    	$('#uploadModal').modal('toggle');
+	    }
+    };
+    uploader.init();
   });

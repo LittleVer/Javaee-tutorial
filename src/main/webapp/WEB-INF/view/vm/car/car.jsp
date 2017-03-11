@@ -85,6 +85,7 @@
                                 </tbody>
                             </table>
                             <a href="${pageContext.request.contextPath}/car.do/car_add.view" class="btn btn-primary" role="button">添加车辆</a>
+                            <button class="btn btn-primary" onclick="uploader.uploadModal('${pageContext.request.contextPath}/car.do/import','${pageContext.request.contextPath}/template/car_tpl.xlsx')">批量上传</button>
                         </div>
                         <!-- /.table-responsive -->
                     </div>
