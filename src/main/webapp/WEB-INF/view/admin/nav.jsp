@@ -34,7 +34,11 @@
           
     <link href="${pageContext.request.contextPath}/bower_components/bootstrap-select-master/dist/css/bootstrap-select.min.css"
           rel="stylesheet" type="text/css">
-
+          
+    <link href="${pageContext.request.contextPath}/bower_components/sweetalert/sweetalert.css"
+          rel="stylesheet" type="text/css">
+          
+          
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you util the page via file:// -->
     <!--[if lt IE 9]>
@@ -50,9 +54,6 @@
 	</style>
 </head>
 <body>
-
-<div id="wrapper">
-
     <!-- Navigation -->
     <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
         <div class="navbar-header">
@@ -126,3 +127,31 @@
         </div>
         <!-- /.navbar-static-side -->
     </nav>
+    
+    <div class="modal fade" id="uploadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+						&times;
+					</button>
+					<h4 class="modal-title" id="myModalLabel">
+						批量上传
+					</h4>
+				</div>
+				<div class="modal-body">
+					<form id="uploadForm" role="form" class="form-inline">
+						<div class="form-group">
+						    <label class="sr-only" for="file">文件输入</label>
+    						<input type="file" id="file" name="file">
+					  	</div>
+   						<button type="submit" class="btn btn-default">上传</button>
+   						<a class="btn btn-default hidden modaldownBtn">模板下载</a>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+				</div>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal -->
+	</div>

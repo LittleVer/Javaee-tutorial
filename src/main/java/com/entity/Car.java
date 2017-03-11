@@ -20,6 +20,19 @@ public class Car implements Serializable{
 	@NotEmpty
     private Integer weight;
 	
+	public Car() {
+		super();
+	}
+	public Car(String carId,Boolean isSale, Integer high,
+			Integer length, Integer wide, Integer weight) {
+		super();
+		this.isSale = isSale;
+		this.carId = carId;
+		this.high = high;
+		this.length = length;
+		this.wide = wide;
+		this.weight = weight;
+	}
 	public Long getId() {
 		return id;
 	}
