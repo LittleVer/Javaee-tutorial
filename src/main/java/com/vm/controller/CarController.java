@@ -1,14 +1,21 @@
 package com.vm.controller;
 
+import java.util.List;
+
 import org.apache.log4j.Logger;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.entity.Car;
 import com.entity.Standard;
+import com.entity.User;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.vm.service.CarBiz;
 import com.vm.service.StandardBiz;
 
@@ -23,9 +30,15 @@ public class CarController {
     private StandardBiz standardBiz;
 
     @RequiresPermissions("car:query")
-    @RequestMapping("car.view")
-    public String CarView(Car car,Model m) {
-        m.addAttribute("carList", carBiz.find(car));
+    @RequestMapping("car.view/{pageNum}")
+    public String CarView(Car car,Model m,@PathVariable("pageNum") int pageNum,
+            @RequestParam(required=false,defaultValue="3") Integer pageSize) {
+    	
+    	PageHelper.startPage(pageNum, pageSize);
+    	List<Car> list =  carBiz.find(car);
+    	PageInfo<Car> page = new PageInfo<Car>(list);
+        m.addAttribute("carList", list);
+        m.addAttribute("page", page);
         return "/vm/car/car";
     }
 
