@@ -11,9 +11,9 @@
 <!-- custom Theme JavaScript -->
 <script src="${pageContext.request.contextPath}/dist/js/sb-admin-2.js"></script>
 
-<!-- DataTables JavaScript -->
+<!-- DataTables JavaScript 
 <script src="${pageContext.request.contextPath}/bower_components/datatables/media/js/jquery.dataTables.min.js"></script>
-<script src="${pageContext.request.contextPath}/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath}/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js"></script>-->
 <!-- Page-Level Demo Scripts - Tables - Use for reference -->
 
 <!-- select JavaScript -->

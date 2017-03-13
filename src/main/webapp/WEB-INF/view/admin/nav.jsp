@@ -38,7 +38,8 @@
     <link href="${pageContext.request.contextPath}/bower_components/sweetalert/sweetalert.css"
           rel="stylesheet" type="text/css">
           
-          
+   <link href="${pageContext.request.contextPath}/css/Splitbutton.css" rel="stylesheet" type="text/css">       
+    
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you util the page via file:// -->
     <!--[if lt IE 9]>

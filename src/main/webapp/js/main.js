@@ -1,6 +1,6 @@
 $(document).ready(function () {
 	$('html').niceScroll({cursorcolor:"#ccc", horizrailenabled: false, enablekeyboard: false});
-    dataTable = $('#dataTables-example').DataTable({
+	/* dataTable = $('#dataTables-example').DataTable({
 	  //dom: '<"toolbar">',
       responsive: true,
       language: {
@@ -27,12 +27,12 @@ $(document).ready(function () {
     			"sSortDescending": ": 以降序排列此列"
     		}
     	}
-      /*createdRow: function( row, data, dataIndex ) {
+      createdRow: function( row, data, dataIndex ) {
    	    if ( dataIndex % 2 == 0 ) {
    	      $(row).addClass( 'important' );
    	    }
-   	  } */
-    });
+   	  } 
+    });*/
     
     
     //上传控件
