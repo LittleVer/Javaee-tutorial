@@ -41,10 +41,9 @@ public class CarController {
     private StandardBiz standardBiz;
 
     @RequiresPermissions("car:query")
-    @RequestMapping("car.view/{pageNum}")
+    @RequestMapping("car.view/{pageNum}/{pageSize}")
     public String CarView(Car car,Model m,@PathVariable("pageNum") int pageNum,
-            @RequestParam(required=false,defaultValue="3") Integer pageSize) {
-    	
+    		@PathVariable("pageSize") int pageSize) {
     	PageHelper.startPage(pageNum, pageSize);
     	List<Car> list =  carBiz.find(car);
     	PageInfo<Car> page = new PageInfo<Car>(list);

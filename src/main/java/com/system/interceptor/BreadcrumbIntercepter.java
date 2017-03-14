@@ -27,7 +27,7 @@ public class BreadcrumbIntercepter implements HandlerInterceptor {
 	private Logger log = Logger.getLogger(BreadcrumbIntercepter.class);
 	private Properties properties;
 	//private Pattern p1 = Pattern.compile("[//\\a-zA-Z]+?(?<!add|update|delete)\\.view");
-	private Pattern p2 = Pattern.compile(".*?(add|update|delete)\\.view");
+	private Pattern p2 = Pattern.compile(".*?(add|update|delete)\\.view.*");
 	private Pattern pc = Pattern.compile("(?:/.*?/)(.*?)(?:\\.|/)");
 	public BreadcrumbIntercepter() {
 		properties = new Properties();
@@ -65,7 +65,7 @@ public class BreadcrumbIntercepter implements HandlerInterceptor {
         	return true;
         }
         
-        if(url.matches("[//\\a-zA-Z]+?(?<!add|update|delete)\\.view")) {
+        if(url.matches("[//\\a-zA-Z]+?(?<!add|update|delete)\\.view.*")) {
         	if(breadcrumbs.size()==3)
         		breadcrumbs.remove(2);
         	if(breadcrumbs.size()==2)
