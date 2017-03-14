@@ -6,7 +6,7 @@
     <div class="container-fluid">
     	<jsp:include page="/WEB-INF/view/admin/breadcrumb.jsp"></jsp:include>
         <div>
-            <h1 class="page-header">车辆管理</h1>
+            <h1 class="page-header">代理商管理</h1>
         </div>
         <div class="panel-heading">
         </div>
@@ -14,18 +14,18 @@
             <div class="col-lg-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        车辆管理
+                        代理商管理
                     </div>
                     <!-- /.panel-heading -->
                     <div class="panel-body">
                         <div class="dataTable_wrapper">
-                            <form class="form-horizontal" action="${pageContext.request.contextPath}/car.do/add" method="post">
+                            <form class="form-horizontal" action="${pageContext.request.contextPath}/agent.do/add" method="post">
                             	<div class="form-group">
 	                                <label class="col-sm-1 control-label">编号</label>
 	                                <div class="col-sm-11">
-	                                	<select class="selectpicker form-control" name="carId">
+	                                	<select class="selectpicker form-control" name="agentId">
 	                                		<c:forEach items="${standardList }" var="standard">
-	                                			<option value="${standard.carId }">${standard.carId }</option>
+	                                			<option value="${standard.agentId }">${standard.agentId }</option>
 	                                		</c:forEach>
 	                                	</select>
 	                                </div>

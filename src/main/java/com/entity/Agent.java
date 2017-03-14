@@ -1,84 +1,100 @@
 package com.entity;
 
 import java.io.Serializable;
+import java.util.Arrays;
+import java.util.List;
 
-import org.hibernate.validator.constraints.NotEmpty;
+import org.apache.commons.collections.ListUtils;
+import org.apache.commons.lang.StringUtils;
+
+import com.entity.enumeration.AgentLevel;
+import com.google.common.collect.Lists;
 
 public class Agent implements Serializable{
-	private static final long serialVersionUID = 6534271072663770032L;
+	private static final long serialVersionUID = 4678225051291399613L;
 	private Long id;
-	@NotEmpty
-    private Boolean isSale;
-	@NotEmpty
-    private String carId;
-	@NotEmpty
-    private Integer high;
-	@NotEmpty
-    private Integer length;
-	@NotEmpty
-    private Integer wide;
-	@NotEmpty
-    private Integer weight;
+    private AgentLevel level;
+    private String agentName;
+    private List<Long> clerkIds;
+    private String clerkIdsStr;
+    private String area;
 	
 	public Agent() {
 		super();
 	}
-	public Agent(String carId,Boolean isSale, Integer high,
-			Integer length, Integer wide, Integer weight) {
+
+	public Agent(AgentLevel level, String agentName, String clerkIdsStr,
+			String area) {
 		super();
-		this.isSale = isSale;
-		this.carId = carId;
-		this.high = high;
-		this.length = length;
-		this.wide = wide;
-		this.weight = weight;
+		this.level = level;
+		this.agentName = agentName;
+		this.setClerkIdsStr(clerkIdsStr);
+		this.area = area;
 	}
+
 	public Long getId() {
 		return id;
 	}
+
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public Boolean getIsSale() {
-		return isSale;
+
+	public AgentLevel getLevel() {
+		return level;
 	}
-	public void setIsSale(Boolean isSale) {
-		this.isSale = isSale;
+
+	public void setLevel(AgentLevel level) {
+		this.level = level;
 	}
-	public String getCarId() {
-		return carId;
+
+	public String getAgentName() {
+		return agentName;
 	}
-	public void setCarId(String carId) {
-		this.carId = carId;
+
+	public void setAgentName(String agentName) {
+		this.agentName = agentName;
 	}
-	public Integer getHigh() {
-		return high;
+
+	public List<Long> getClerkIds() {
+		return clerkIds;
 	}
-	public void setHigh(Integer high) {
-		this.high = high;
+
+	public void setClerkIds(List<Long> clerkIds) {
+		this.clerkIds = clerkIds;
+		StringBuffer buff = new StringBuffer();
+		for(Long id : clerkIds) {
+			buff.append(id).append(',');
+		}
+		this.clerkIdsStr = buff.toString();
 	}
-	public Integer getLength() {
-		return length;
+
+	public String getClerkIdsStr() {
+		return clerkIdsStr;
 	}
-	public void setLength(Integer length) {
-		this.length = length;
+
+	public void setClerkIdsStr(String clerkIdsStr) {
+		this.clerkIdsStr = clerkIdsStr;
+		if(!StringUtils.isEmpty(clerkIdsStr)) {
+			this.clerkIds = Lists.newArrayList();
+			String[] ids = clerkIdsStr.split(",");
+			for(String id : ids) {
+				this.clerkIds.add(Long.parseLong(id));
+			}
+		}
 	}
-	public Integer getWide() {
-		return wide;
+
+	public String getArea() {
+		return area;
 	}
-	public void setWide(Integer wide) {
-		this.wide = wide;
+
+	public void setArea(String area) {
+		this.area = area;
 	}
-	public Integer getWeight() {
-		return weight;
-	}
-	public void setWeight(Integer weight) {
-		this.weight = weight;
-	}
+
 	@Override
 	public String toString() {
-		return "Car [id=" + id + ", isSale=" + isSale + ", carId=" + carId
-				+ ", high=" + high + ", length=" + length + ", wide=" + wide
-				+ ", weight=" + weight + "]";
+		return "Agent [id=" + id + ", level=" + level + ", agentName="
+				+ agentName + ", clerdIds=" + clerkIds + ", area=" + area + "]";
 	}
 }

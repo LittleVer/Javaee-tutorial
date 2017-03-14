@@ -7,7 +7,7 @@
     <div class="container-fluid">
     	<jsp:include page="/WEB-INF/view/admin/breadcrumb.jsp"></jsp:include>
         <div>
-            <h1 class="page-header">车辆管理</h1>
+            <h1 class="page-header">代理商管理</h1>
         </div>
         <div class="panel-heading">
         </div>
@@ -15,19 +15,19 @@
             <div class="col-lg-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        车辆信息
+                        代理商信息
                     </div>
                     <!-- /.panel-heading -->
                     <div class="panel-body">
                         <div class="dataTable_wrapper">
-                            <form class="form-horizontal" action="${pageContext.request.contextPath}/car.do/update" method="post">
-                                <input name="id" type="hidden" value="${car.id }">
+                            <form class="form-horizontal" action="${pageContext.request.contextPath}/agent.do/update" method="post">
+                                <input name="id" type="hidden" value="${agent.id }">
                                 <div class="form-group">
                                 	<label class="col-sm-1 control-label">编号</label>
                                 	<div class="col-sm-11">
-                                		<select class="selectpicker form-control" name="carId">
+                                		<select class="selectpicker form-control" name="agentId">
 	                                		<c:forEach items="${standardList }" var="standard">
-	                                			<option <c:if test="${car.carId==standard.carId }">selected</c:if> value="${standard.carId }">${standard.carId }</option>
+	                                			<option <c:if test="${agent.agentId==standard.agentId }">selected</c:if> value="${standard.agentId }">${standard.agentId }</option>
 	                                		</c:forEach>
 	                                	</select>
                                 	</div>
@@ -36,33 +36,33 @@
 	                                <label class="col-sm-1 control-label">是否上架</label>
 	                                <div class="col-sm-11">
 		                                <select class="selectpicker form-control" name="isSale">
-		                                	<option value="true" <c:if test="${car.isSale }">selected</c:if>>上架</option>
-		                                	<option value="false" <c:if test="${not car.isSale }">selected</c:if>>下架</option>
+		                                	<option value="true" <c:if test="${agent.isSale }">selected</c:if>>上架</option>
+		                                	<option value="false" <c:if test="${not agent.isSale }">selected</c:if>>下架</option>
 		                                </select>
 	                                </div>
 	                            </div>
 	                            <div class="form-group">
 	                                <label class="col-sm-1 control-label">高</label>
 	                                <div class="col-sm-11">
-	                                	<input class="form-control" type="number" name="high" value="${car.high }">
+	                                	<input class="form-control" type="number" name="high" value="${agent.high }">
 	                                </div>
                                 </div>
                                 <div class="form-group">
 	                                <label class="col-sm-1 control-label">长</label>
 	                                <div class="col-sm-11">
-	                                	<input class="form-control" type="number" name="length" value="${car.length }">
+	                                	<input class="form-control" type="number" name="length" value="${agent.length }">
 	                                </div>
                                 </div>
                                 <div class="form-group">
 	                                <label class="col-sm-1 control-label">宽</label>
 	                                <div class="col-sm-11">
-	                                	<input class="form-control" type="number" name="wide" value="${car.wide }">
+	                                	<input class="form-control" type="number" name="wide" value="${agent.wide }">
 	                                </div>
                                 </div>
                                 <div class="form-group">
 	                                <label class="col-sm-1 control-label">重量</label>
 	                                <div class="col-sm-11">
-	                                	<input class="form-control" type="number" name="weight" value="${car.weight }">
+	                                	<input class="form-control" type="number" name="weight" value="${agent.weight }">
 	                                </div>
                                 </div>
                                 <label class="col-sm-2 control-label"></label>

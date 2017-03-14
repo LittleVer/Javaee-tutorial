@@ -1,7 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <jsp:include page="/WEB-INF/view/admin/nav.jsp"></jsp:include>
-<%--<jsp:include page="/user.do/findAll"></jsp:include>--%>
 <!-- Page Content -->
 <div id="page-wrapper">
     <div class="container-fluid">
@@ -20,6 +19,13 @@
                     <!-- /.panel-heading -->
                     <div class="panel-body">
                         <div class="dataTable_wrapper">
+                        	<form class="searchForm form-horizontal" action="${pageContext.request.contextPath}/role.do/role.view/" method="post">
+                                <div class="form-group">
+                                	<div class="col-sm-2">
+                                		<a href="${pageContext.request.contextPath}/role.do/role_add.view" class="btn btn-primary"
+                               role="button">新增</a>
+                                	</div>
+                                </div>
                             <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                                 <thead>
                                 <tr>
@@ -44,10 +50,10 @@
                                 </c:forEach>
                                 </tbody>
                             </table>
-                            <a href="${pageContext.request.contextPath}/role.do/role_add.view" class="btn btn-primary"
-                               role="button">添加角色</a>
-                        </div>
+                           <jsp:include page="/WEB-INF/view/admin/pageSplit.jsp"></jsp:include>
+                        </form>
                         <!-- /.table-responsive -->
+                        </div>
                     </div>
                     <!-- /.panel-body -->
                 </div>

@@ -14,11 +14,6 @@ import com.entity.Resource;
 import com.system.dao.ResourceDao;
 import com.system.service.ResourceBiz;
 
-/**
- * <p>User: Zhang Kaitao
- * <p>Date: 14-2-14
- * <p>Version: 1.0
- */
 @Service
 public class ResourceBizImpl implements ResourceBiz {
 
@@ -31,8 +26,8 @@ public class ResourceBizImpl implements ResourceBiz {
     }
 
     @Override
-    public Resource updateResource(Resource resource) {
-        return resourceDao.updateResource(resource);
+    public void updateResource(Resource resource) {
+        resourceDao.updateResource(resource);
     }
 
     @Override

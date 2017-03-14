@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://www.springframework.org/tags/form"  prefix="form"%>
 <jsp:include page="/WEB-INF/view/admin/nav.jsp"></jsp:include>
 <!-- Page Content -->
 <div id="page-wrapper">
@@ -11,80 +12,78 @@
             <div class="col-lg-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        车辆信息
+                        代理商信息
                     </div>
                     <!-- /.panel-heading -->
                     <div class="panel-body">
                         <div class="dataTable_wrapper">
-                        	<form class="searchForm form-horizontal" action="${pageContext.request.contextPath}/car.do/car.view/0" method="post">
-                        		<h5>查询条件</h5>
+                        	<form:form cssClass="searchForm form-horizontal" commandName="agent" action="${pageContext.request.contextPath}/agent.do/agent.view/" method="post">
+                        		<button type="button" class="btn btn-default pull-right" id="toggle-advanced-search">查询条件<i class="fa fa-angle-double-down"></i></button>
+                        		<div class="clearfix"></div>
+                        		<div class="row-fluid" id="div-advanced-search" style="display:none;">
                         		<div class="form-group">
-	                                <label class="col-sm-1 control-label">高</label>
+                        			<label class="col-sm-1 control-label">级别</label>
 	                                <div class="col-sm-2">
-	                                	<input class="form-control" type="number" name="high">
+	                                	<form:select path="level" cssClass="form-control">
+                                			<option></option>
+	                                		<c:forEach items="${agentLevel }" var="entry">
+	                                			<form:option value="${entry.name() }" label="${entry.getName() }"/>
+	                                		</c:forEach>
+	                                	</form:select>
 	                                </div>
-	                                <label class="col-sm-1 control-label">长</label>
+                        			<label class="col-sm-1 control-label">名称</label>
 	                                <div class="col-sm-2">
-	                                	<input class="form-control" type="number" name="length">
+	                                	<form:input path="agentName" cssClass="form-control"/>
 	                                </div>
-	                                <label class="col-sm-1 control-label">宽</label>
+                        			<label class="col-sm-1 control-label">区域</label>
 	                                <div class="col-sm-2">
-	                                	<input class="form-control" type="number" name="wide">
+	                                	<form:input path="area" cssClass="form-control"/>
 	                                </div>
-	                                <label class="col-sm-1 control-label">重</label>
-	                                <div class="col-sm-2">
-	                                	<input class="form-control" type="number" name="weight">
-	                                </div>
+                        		</div>
                                 </div>
                                 <div class="form-group">
-                                	<label class="col-sm-10 control-label"></label>
+                                	<div class="col-sm-2">
+                                		<a href="${pageContext.request.contextPath}/agent.do/agent_add.view" class="btn btn-primary" role="button">新增</a>
+                                		<button type="button" class="btn btn-primary" onclick="uploader.uploadModal('${pageContext.request.contextPath}/agent.do/import','${pageContext.request.contextPath}/template/agent_tpl.xlsx')">批量上传</button>
+                                	</div>
+                                	<label class="col-sm-8 control-label"></label>
+                                	<div id="searchBtns" style="display:none;">
                                 	<div class="col-sm-1">
-                                		<button type="submit" class="btn btn-primary form-control">查询</button>
+                                		<button type="button" class="btn btn-primary form-control searchBtn">查询</button>
                                 	</div>
                                 	<div class="col-sm-1">
                                 		<button type="reset" class="btn btn-primary form-control">重置</button>
                                 	</div>
-                                	<div class="col-sm-1">
-                                		<a href="${pageContext.request.contextPath}/car.do/car_add.view" class="btn btn-primary" role="button">新增</a>
                                 	</div>
                                 </div>
-                        	</form>
                             <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                                 <thead>
                                 <tr>
-                                    <th>车辆编号</th>
-                                    <th>是否上架</th>
-                                    <th>高</th>
-                                    <th>长</th>
-                                    <th>宽</th>
-                                    <th>重</th>
+                                    <th>级别</th>
+                                    <th>名称</th>
+                                    <th>绑定职员</th>
+                                    <th>区域</th>
                                     <th>操作</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <c:forEach var="car" items="${carList}">
+                                <c:forEach var="agent" items="${agentList}">
                                     <tr>
-                                        <td>${car.carId}</td>
+                                        <td>${agent.level}</td>
+                                        <td>${agent.agentName}</td>
+                                        <td>${agent.clerkIdsStr}</td>
+                                        <td>${agent.area}</td>
                                         <td>
-                                        	<c:choose>
-                                        		<c:when test="${car.isSale}">上架</c:when>
-                                        		<c:otherwise>下架</c:otherwise>
-                                        	</c:choose>
-                                        </td>
-                                        <td>${car.high}</td>
-                                        <td>${car.length}</td>
-                                        <td>${car.wide}</td>
-                                        <td>${car.weight}</td>
-                                        <td>
-                                            <a href="${pageContext.request.contextPath}/car.do/car_update.view?id=${car.id}">修改</a>
-                                            <a href="${pageContext.request.contextPath}/car.do/delete?id=${car.id}"
-                                               onclick="return confirm('是否要删除该车辆')">删除</a>
+                                            <a href="${pageContext.request.contextPath}/agent.do/agent_update.view?id=${agent.id}">修改</a>
+                                            <a href="${pageContext.request.contextPath}/agent.do/delete?id=${agent.id}"
+                                               onclick="return confirm('是否要删除该代理商')">删除</a>
                                         </td>
                                     </tr>
                                 </c:forEach>
                                 </tbody>
                             </table>
                            <jsp:include page="/WEB-INF/view/admin/pageSplit.jsp"></jsp:include>
+                        </form:form>
                         </div>
                         <!-- /.table-responsive -->
                     </div>

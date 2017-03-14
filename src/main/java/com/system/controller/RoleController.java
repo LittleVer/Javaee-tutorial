@@ -1,13 +1,18 @@
 package com.system.controller;
 
-import org.apache.shiro.authz.annotation.RequiresRoles;
+import java.util.List;
+
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.entity.Role;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.system.service.ResourceBiz;
 import com.system.service.RoleBiz;
 
@@ -25,22 +30,33 @@ public class RoleController {
 
     @Autowired
     private ResourceBiz resourceBiz;
-
-    @RequiresRoles("admin")
+    
+    @RequiresPermissions("role:query")
     @RequestMapping("role.view")
     public String roleView(Model model) {
-        model.addAttribute("roleList", roleBiz.findAll());
+        return "forward:/role.do/role.view/0/10";
+    }
+
+    @RequiresPermissions("role:query")
+    @RequestMapping("role.view/{pageNum}/{pageSize}")
+    public String roleView(Model model,@PathVariable("pageNum") int pageNum,
+    		@PathVariable("pageSize") int pageSize) {
+    	PageHelper.startPage(pageNum, pageSize);
+		List<Role> list = roleBiz.findAll();
+		PageInfo<Role> page = new PageInfo<Role>(list);
+    	model.addAttribute("roleList",list);
+    	model.addAttribute("page",page);
         return "/admin/system/role/role";
     }
 
-    @RequiresRoles("admin")
+    @RequiresPermissions("role:add")
     @RequestMapping("role_add.view")
     public String roleAddView(Model model) {
     	model.addAttribute("resourceList", resourceBiz.findAll());
         return "/admin/system/role/role_add";
     }
     
-    @RequiresRoles("admin")
+    @RequiresPermissions("role:update")
     @RequestMapping("role_update.view")
     public String roleUpdateView(Long id,Model model) {
     	model.addAttribute("role", roleBiz.findOne(id));
@@ -48,67 +64,24 @@ public class RoleController {
     	return "/admin/system/role/role_update";
     }
 
-    @RequiresRoles("admin")
+    @RequiresPermissions("role:add")
     @RequestMapping("add")
     public String add(Role role, RedirectAttributes redirectAttributes) {
         roleBiz.createRole(role);
         return "redirect:/role.do/role.view";
     }
     
-    @RequiresRoles("admin")
+    @RequiresPermissions("role:update")
     @RequestMapping("update")
     public String update(Role role, RedirectAttributes redirectAttributes) {
     	roleBiz.updateRole(role);
     	return "redirect:/role.do/role.view";
     }
 
-    @RequiresRoles("admin")
+    @RequiresPermissions("role:delete")
     @RequestMapping("delete")
     public String delete(Long id, RedirectAttributes redirectAttributes) {
         roleBiz.deleteRole(id);
         return "redirect:/role.do/role.view";
     }
-
-//
-//    @RequiresPermissions("role:create")
-//    @RequestMapping(value = "/create", method = RequestMethod.GET)
-//    public String showCreateForm(Model model) {
-//        setCommonData(model);
-//        model.addAttribute("role", new Role());
-//        model.addAttribute("op", "新增");
-//        return "role/edit";
-//    }
-//
-//    @RequiresPermissions("role:update")
-//    @RequestMapping(value = "/{id}/update", method = RequestMethod.GET)
-//    public String showUpdateForm(@PathVariable("id") Long id, Model model) {
-//        setCommonData(model);
-//        model.addAttribute("role", roleBiz.findOne(id));
-//        model.addAttribute("op", "修改");
-//        return "role/edit";
-//    }
-//
-//    @RequiresPermissions("role:update")
-//    @RequestMapping(value = "/{id}/update", method = RequestMethod.POST)
-//    public String update(Role role, RedirectAttributes redirectAttributes) {
-//        roleBiz.updateRole(role);
-//        redirectAttributes.addFlashAttribute("msg", "修改成功");
-//        return "redirect:/role";
-//    }
-//
-//    @RequiresPermissions("role:delete")
-//    @RequestMapping(value = "/{id}/delete", method = RequestMethod.GET)
-//    public String showDeleteForm(@PathVariable("id") Long id, Model model) {
-//        setCommonData(model);
-//        model.addAttribute("role", roleBiz.findOne(id));
-//        model.addAttribute("op", "删除");
-//        return "role/edit";
-//    }
-
-
-//    private void setCommonData(Model model) {
-//        model.addAttribute("resourceList", roleBiz.findAll());
-//    }
-
-
 }
