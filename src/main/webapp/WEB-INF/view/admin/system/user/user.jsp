@@ -20,6 +20,13 @@
                     <!-- /.panel-heading -->
                     <div class="panel-body">
                         <div class="dataTable_wrapper">
+                        	<form class="searchForm form-horizontal" action="${pageContext.request.contextPath}/user.do/user.view/" method="post">
+                                <div class="form-group">
+                                	<div class="col-sm-2">
+                                		<a href="${pageContext.request.contextPath}/user.do/user_add.view" class="btn btn-primary"
+                               				role="button">新增</a>
+                                	</div>
+                                </div>
                             <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                                 <thead>
                                 <tr>
@@ -34,7 +41,7 @@
                                     <tr>
                                         <td>${user.userId}</td>
                                         <td>${user.password}</td>
-                                        <td>${user.roleIdsStr}</td>
+                                        <td>${user.roleDesc}</td>
                                         <td>
                                         	<a href="${pageContext.request.contextPath}/user.do/findById?id=${user.userId}">修改</a>
                                             &nbsp;<a href="${pageContext.request.contextPath}/user.do/delete?id=${user.userId}"
@@ -44,8 +51,8 @@
                                 </c:forEach>
                                 </tbody>
                             </table>
-                            <a href="${pageContext.request.contextPath}/user.do/user_add.view" class="btn btn-primary"
-                               role="button">添加用户</a>
+                           <jsp:include page="/WEB-INF/view/admin/pageSplit.jsp"></jsp:include>
+                        </form>
                         </div>
                         <!-- /.table-responsive -->
                     </div>

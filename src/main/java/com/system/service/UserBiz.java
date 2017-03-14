@@ -1,18 +1,17 @@
 package com.system.service;
 
 
-import com.entity.User;
-import com.entity.vo.UserVo;
-
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 import java.util.Set;
+
+import com.entity.User;
 
 /**
  * Created by c0de8ug on 16-2-9.
  */
 public interface UserBiz {
-    public List<UserVo> findAll() throws InvocationTargetException, IllegalAccessException;
+    public List<User> findAll() throws InvocationTargetException, IllegalAccessException;
 
     public User findById(String id);
 

@@ -38,19 +38,19 @@
                         		<div class="form-group">
 	                                <label class="col-sm-1 control-label">高</label>
 	                                <div class="col-sm-2">
-	                                	<input class="form-control" type="number" name="high" value="">
+	                                	<input class="form-control" type="number" name="high" value="${car.high }">
 	                                </div>
 	                                <label class="col-sm-1 control-label">长</label>
 	                                <div class="col-sm-2">
-	                                	<input class="form-control" type="number" name="length">
+	                                	<input class="form-control" type="number" name="length" value="${car.length }">
 	                                </div>
 	                                <label class="col-sm-1 control-label">宽</label>
 	                                <div class="col-sm-2">
-	                                	<input class="form-control" type="number" name="wide">
+	                                	<input class="form-control" type="number" name="wide" value="${car.wide }">
 	                                </div>
 	                                <label class="col-sm-1 control-label">重</label>
 	                                <div class="col-sm-2">
-	                                	<input class="form-control" type="number" name="weight">
+	                                	<input class="form-control" type="number" name="weight" value="${car.weight }">
 	                                </div>
                                 </div>
                                 </div>

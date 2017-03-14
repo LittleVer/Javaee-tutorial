@@ -20,6 +20,12 @@ public class StandardController {
 
     @Autowired
     private StandardBiz standardBiz;
+    
+    @RequiresPermissions("standard:query")
+    @RequestMapping("standard.view")
+    public String standardView(Model model) {
+        return "forward:/standard.do/standard.view/0/10";
+    }
 
     @RequiresPermissions("standard:query")
     @RequestMapping("standard.view/{pageNum}/{pageSize}")

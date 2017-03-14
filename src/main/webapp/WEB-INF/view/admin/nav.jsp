@@ -110,17 +110,17 @@
                         <ul class="nav nav-second-level">
                         	<shiro:hasPermission name="standard">
                             <li>
-                                <a href="${pageContext.request.contextPath}/standard.do/standard.view/0/10"> 规格管理</a>
+                                <a href="${pageContext.request.contextPath}/standard.do/standard.view"> 规格管理</a>
                             </li>
                         	</shiro:hasPermission>
                         	<shiro:hasPermission name="car">
                             <li>
-                                <a href="${pageContext.request.contextPath}/car.do/car.view/0/10"> 车辆管理</a>
+                                <a href="${pageContext.request.contextPath}/car.do/car.view"> 车辆管理</a>
                             </li>
                         	</shiro:hasPermission>
                         	<shiro:hasPermission name="agent">
                             <li>
-                                <a href="${pageContext.request.contextPath}/agent.do/agent.view/0/10"> 车辆管理</a>
+                                <a href="${pageContext.request.contextPath}/agent.do/agent.view"> 代理商管理</a>
                             </li>
                         	</shiro:hasPermission>
                         </ul>

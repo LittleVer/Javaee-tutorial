@@ -43,16 +43,6 @@ public class LoginController {
             String principal = (String) subject.getPrincipal();
             session.setAttribute("username", principal);
             return "/admin/main";
-           /* switch (principal) {
-                case "admin":
-                    return "/admin/main";
-                case "teacher":
-                    return "/teacher/main";
-                case "student":
-                    return "/student/main";
-                case "supplier":
-                    return "redirect:supplier.do/supplier.view";
-            }*/
         }
 
         return "forward:login.jsp";

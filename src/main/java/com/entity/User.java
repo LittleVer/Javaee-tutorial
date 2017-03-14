@@ -20,6 +20,7 @@ public class User {
     String salt;
     private List<Long> roleIds; //拥有的角色列表
     private String roleIdsStr;
+    private String roleDesc;
     private Boolean locked = Boolean.FALSE;
 
 
@@ -55,7 +56,15 @@ public class User {
         return roleIds;
     }
 
-    public void setRoleIds(List<Long> roleIds) {
+    public String getRoleDesc() {
+		return roleDesc;
+	}
+
+	public void setRoleDesc(String roleDesc) {
+		this.roleDesc = roleDesc;
+	}
+
+	public void setRoleIds(List<Long> roleIds) {
     	this.roleIds = roleIds;
     	StringBuilder s = new StringBuilder();
         int i = 0;

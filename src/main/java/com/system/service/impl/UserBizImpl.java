@@ -1,20 +1,17 @@
 package com.system.service.impl;
 
 import java.lang.reflect.InvocationTargetException;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
-import org.apache.commons.beanutils.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.entity.Role;
 import com.entity.User;
-import com.entity.vo.UserVo;
 import com.system.dao.RoleDao;
 import com.system.dao.UserDao;
 import com.system.service.RoleBiz;
@@ -40,20 +37,14 @@ public class UserBizImpl implements UserBiz {
     private RoleBiz roleBiz;
 
     @Override
-    public List<UserVo> findAll() throws InvocationTargetException, IllegalAccessException {
-        List<UserVo> userVoList = new ArrayList<>();
+    public List<User> findAll() throws InvocationTargetException, IllegalAccessException {
         List<User> userList = userDao.findAll();
-
-
         Iterator<User> iterator = userList.iterator();
 
         while (iterator.hasNext()) {
             StringBuilder s = new StringBuilder();
             User user = (User) iterator.next();
             List<Long> roleIds = user.getRoleIds();
-
-            UserVo userVo = new UserVo();
-            BeanUtils.copyProperties(userVo, user);
 
             if (roleIds != null) {
                 int i = 0;
@@ -66,15 +57,10 @@ public class UserBizImpl implements UserBiz {
                 }
                 Role role = roleDao.findOne(roleIds.get(i));
                 s.append(role.getDescription());
-                userVo.setRoleIdsStr(s.toString());
+                user.setRoleDesc(s.toString());
             }
-
-
-            userVoList.add(userVo);
-
         }
-
-        return userVoList;
+        return userList;
     }
 
     @Override

@@ -16,7 +16,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -39,6 +38,12 @@ public class CarController {
     private CarBiz carBiz;
     @Autowired
     private StandardBiz standardBiz;
+    
+    @RequiresPermissions("car:query")
+    @RequestMapping("car.view")
+    public String carView(Model model) {
+        return "forward:/car.do/car.view/0/10";
+    }
 
     @RequiresPermissions("car:query")
     @RequestMapping("car.view/{pageNum}/{pageSize}")
@@ -86,14 +91,6 @@ public class CarController {
     public String delete(Long id) {
         carBiz.delete(id);
         return "redirect:/car.do/car.view";
-    }
-    
-    @RequiresPermissions("car:delete")
-    @RequestMapping("test")
-    @ResponseBody
-    public Map<String,Object> test(@RequestBody String json) {
-        log.info(json.toString());
-        return ResultMapUtil.getSuccessMap("123");
     }
     
     @SuppressWarnings("resource")

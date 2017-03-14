@@ -1,23 +1,22 @@
 package com.system.controller;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.List;
 
-import org.apache.shiro.authz.annotation.RequiresRoles;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.entity.User;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.system.service.RoleBiz;
 import com.system.service.UserBiz;
 
-/**
- * Created by c0de8ug on 16-2-9.
- */
-
 @Controller
-@RequiresRoles("admin")
 @RequestMapping("user.do")
 public class UserController {
 
@@ -26,22 +25,33 @@ public class UserController {
 
 	@Autowired
     private RoleBiz roleBiz;
-
-    @RequiresRoles("admin")
+	
+	@RequiresPermissions("user:query")
     @RequestMapping("user.view")
-    public String userView(Model m) throws InvocationTargetException, IllegalAccessException {
-        m.addAttribute("userList", userBiz.findAll());
+    public String userView(Model model) {
+        return "forward:/user.do/user.view/0/10";
+    }
+
+	@RequiresPermissions("user:query")
+    @RequestMapping("user.view/{pageNum}/{pageSize}")
+    public String userView(Model m,@PathVariable("pageNum") int pageNum,
+    		@PathVariable("pageSize") int pageSize) throws InvocationTargetException, IllegalAccessException {
+		PageHelper.startPage(pageNum, pageSize);
+		List<User> list = userBiz.findAll();
+		PageInfo<User> page = new PageInfo<User>(list);
+    	m.addAttribute("userList",list);
+    	m.addAttribute("page",page);
         return "/admin/system/user/user";
     }
 
-    @RequiresRoles("admin")
+	@RequiresPermissions("user:add")
     @RequestMapping("user_add.view")
     public String userAddView(Model m) {
         m.addAttribute("roleList", roleBiz.findAll());
         return "/admin/system/user/user_add";
     }
 
-    @RequiresRoles("admin")
+	@RequiresPermissions("user:add")
     @RequestMapping("findById")
     public String findById(String id, Model m) {
         m.addAttribute("user", userBiz.findById(id));
@@ -49,14 +59,14 @@ public class UserController {
         return "/admin/system/user/user_update";
     }
 
-    @RequiresRoles("admin")
+	@RequiresPermissions("user:update")
     @RequestMapping("update")
     public String update(User user) {
         userBiz.update(user);
         return "redirect:/user.do/user.view";
     }
 
-    @RequiresRoles("admin")
+	@RequiresPermissions("user:add")
     @RequestMapping("add")
     public String add(User user) {
 
@@ -64,7 +74,7 @@ public class UserController {
         return "redirect:/user.do/user.view";
     }
 
-    @RequiresRoles("admin")
+	@RequiresPermissions("user:delete")
     @RequestMapping("delete")
     public String delete(String id) {
         userBiz.delete(id);
