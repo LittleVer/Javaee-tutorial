@@ -40,6 +40,7 @@
                                 </tbody>
                             </table>
                             <a href="${pageContext.request.contextPath}/standard.do/standard_add.view" class="btn btn-primary" role="button">添加规格</a>
+                            <jsp:include page="/WEB-INF/view/admin/pageSplit.jsp"></jsp:include>
                         </div>
                         <!-- /.table-responsive -->
                     </div>

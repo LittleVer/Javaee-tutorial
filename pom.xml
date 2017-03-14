@@ -204,6 +204,17 @@
 		    <artifactId>jcl-over-slf4j</artifactId>
 		    <version>1.7.12</version>
 		</dependency>
+		<!-- pagehelper -->
+        <dependency>
+            <groupId>com.github.pagehelper</groupId>
+            <artifactId>pagehelper</artifactId>
+            <version>4.1.6</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.jsqlparser</groupId>
+            <artifactId>jsqlparser</artifactId>
+            <version>0.9.6</version>
+        </dependency>
         <!-- <dependency>
             <groupId>commons-logging</groupId>
             <artifactId>commons-logging</artifactId>

@@ -3,6 +3,7 @@
 
 <ol class="breadcrumb">
 <c:forEach items="${sessionScope.breadcrumbs}" var="bread" varStatus="s">
+	${bread.view }/${bread.name }
 	<c:if test="${not s.last }">
 		<li><a href="${bread.view }">${bread.name }</a></li>
 	</c:if>

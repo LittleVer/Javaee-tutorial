@@ -5,9 +5,6 @@
 <div id="page-wrapper">
     <div class="container-fluid">
     	<jsp:include page="/breadcrumb.jsp"></jsp:include>
-        <div>
-            <h1 class="page-header">车辆管理</h1>
-        </div>
         <div class="panel-heading">
         </div>
         <div class="row">
@@ -19,7 +16,7 @@
                     <!-- /.panel-heading -->
                     <div class="panel-body">
                         <div class="dataTable_wrapper">
-                        	<%-- <form class="searchForm form-horizontal" action="${pageContext.request.contextPath}/car.do/car.view" method="post">
+                        	<form class="searchForm form-horizontal" action="${pageContext.request.contextPath}/car.do/car.view/0" method="post">
                         		<h5>查询条件</h5>
                         		<div class="form-group">
 	                                <label class="col-sm-1 control-label">高</label>
@@ -47,8 +44,11 @@
                                 	<div class="col-sm-1">
                                 		<button type="reset" class="btn btn-primary form-control">重置</button>
                                 	</div>
+                                	<div class="col-sm-1">
+                                		<a href="${pageContext.request.contextPath}/car.do/car_add.view" class="btn btn-primary" role="button">新增</a>
+                                	</div>
                                 </div>
-                        	</form> --%>
+                        	</form>
                             <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                                 <thead>
                                 <tr>
@@ -84,8 +84,7 @@
                                 </c:forEach>
                                 </tbody>
                             </table>
-                            <a href="${pageContext.request.contextPath}/car.do/car_add.view" class="btn btn-primary" role="button">添加车辆</a>
-                            <button class="btn btn-primary" onclick="uploader.uploadModal('${pageContext.request.contextPath}/car.do/import','${pageContext.request.contextPath}/template/car_tpl.xlsx')">批量上传</button>
+                           <jsp:include page="/WEB-INF/view/admin/pageSplit.jsp"></jsp:include>
                         </div>
                         <!-- /.table-responsive -->
                     </div>
