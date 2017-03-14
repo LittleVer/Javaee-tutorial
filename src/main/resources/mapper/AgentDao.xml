@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.vm.dao.AgentDao">
+
+    <resultMap id="agent_map" type="Agent">
+        <id property="id" column="id"/>
+        <result property="level" column="level"/>
+        <result property="agentName" column="agent_name"/>
+        <result property="clerkId" column="clerk_id"/>
+        <result property="area" column="area"/>
+    </resultMap>
+
+
+    <select id="find" resultMap="agent_map" parameterType="Agent">
+        SELECT * FROM agent
+        <where>
+        	<if test="level!=null and level!=''">
+        		and level=#{level}
+        	</if>
+        	<if test="agentName!=null and agentName!=''">
+        		and agent_name=#{agentName}
+        	</if>
+        	<if test="area!=null and area!=''">
+        		and area=#{area}
+        	</if>
+        </where>
+    </select>
+
+    <select id="findById" parameterType="long" resultMap="agent_map">
+        SELECT * FROM agent WHERE id = #{value}
+    </select>
+
+    <update id="update" parameterType="Agent">
+        UPDATE agent 
+        <set>
+        	<if test="level!=null and level!=''">
+        		level=#{level},
+        	</if>
+        	<if test="agentName!=null and agentName!=''">
+        		agent_name=#{agentName},
+        	</if>
+        	<if test="area != null and area!=''">
+        		area=#{area},
+        	</if>
+        	<if test="clerkId != null">
+        		clerk_id=#{clerkId},
+        	</if>
+        </set>
+        WHERE id = #{id}
+    </update>
+
+    <insert id="add" parameterType="Agent">
+        INSERT INTO agent(level,agent_name,clerk_id,area) VALUES(#{level},#{agentName},#{clerkId},#{area})
+    </insert>
+
+    <delete id="delete" parameterType="long">
+        DELETE FROM agent WHERE id = #{id}
+    </delete>
+</mapper>

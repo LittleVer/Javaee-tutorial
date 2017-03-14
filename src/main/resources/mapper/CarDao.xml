@@ -21,12 +21,25 @@
         SELECT * FROM car
         <where>
         	<if test="isSale!=null">
-        		is_sale=#{isSale}
+        		is_sale=#{isSale,jdbcType=BOOLEAN}
         	</if>
         	<if test="carId!=null and carId!=''">
         		car_id=#{carId}
         	</if>
+        	<if test="high!=null">
+        		high=#{high}
+        	</if>
+        	<if test="length!=null">
+        		length=#{length}
+        	</if>
+        	<if test="wide!=null">
+        		wide=#{wide}
+        	</if>
+        	<if test="weight!=null">
+        		weight=#{weight}
+        	</if>
         </where>
+        order by is_sale,car_id
     </select>
 
     <select id="findById" parameterType="long" resultMap="car_map">
