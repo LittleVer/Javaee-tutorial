@@ -1,10 +1,8 @@
 package com.entity;
 
 import java.io.Serializable;
-import java.util.Arrays;
 import java.util.List;
 
-import org.apache.commons.collections.ListUtils;
 import org.apache.commons.lang.StringUtils;
 
 import com.entity.enumeration.AgentLevel;
@@ -15,20 +13,20 @@ public class Agent implements Serializable{
 	private Long id;
     private AgentLevel level;
     private String agentName;
-    private List<Long> clerkIds;
-    private String clerkIdsStr;
+    private List<String> userIds;
+    private String userIdsStr;
     private String area;
 	
 	public Agent() {
 		super();
 	}
 
-	public Agent(AgentLevel level, String agentName, String clerkIdsStr,
+	public Agent(AgentLevel level, String agentName, String userIdsStr,
 			String area) {
 		super();
 		this.level = level;
 		this.agentName = agentName;
-		this.setClerkIdsStr(clerkIdsStr);
+		this.setUserIdsStr(userIdsStr);
 		this.area = area;
 	}
 
@@ -56,30 +54,30 @@ public class Agent implements Serializable{
 		this.agentName = agentName;
 	}
 
-	public List<Long> getClerkIds() {
-		return clerkIds;
+	public List<String> getUserIds() {
+		return userIds;
 	}
 
-	public void setClerkIds(List<Long> clerkIds) {
-		this.clerkIds = clerkIds;
+	public void setUserIds(List<String> userIds) {
+		this.userIds = userIds;
 		StringBuffer buff = new StringBuffer();
-		for(Long id : clerkIds) {
+		for(String id : userIds) {
 			buff.append(id).append(',');
 		}
-		this.clerkIdsStr = buff.toString();
+		this.userIdsStr = buff.toString();
 	}
 
-	public String getClerkIdsStr() {
-		return clerkIdsStr;
+	public String getUserIdsStr() {
+		return userIdsStr;
 	}
 
-	public void setClerkIdsStr(String clerkIdsStr) {
-		this.clerkIdsStr = clerkIdsStr;
-		if(!StringUtils.isEmpty(clerkIdsStr)) {
-			this.clerkIds = Lists.newArrayList();
-			String[] ids = clerkIdsStr.split(",");
+	public void setUserIdsStr(String userIdsStr) {
+		this.userIdsStr = userIdsStr;
+		if(!StringUtils.isEmpty(userIdsStr)) {
+			this.userIds = Lists.newArrayList();
+			String[] ids = userIdsStr.split(",");
 			for(String id : ids) {
-				this.clerkIds.add(Long.parseLong(id));
+				this.userIds.add(id);
 			}
 		}
 	}
@@ -95,6 +93,6 @@ public class Agent implements Serializable{
 	@Override
 	public String toString() {
 		return "Agent [id=" + id + ", level=" + level + ", agentName="
-				+ agentName + ", clerdIds=" + clerkIds + ", area=" + area + "]";
+				+ agentName + ", userIds=" + userIds + ", area=" + area + "]";
 	}
 }

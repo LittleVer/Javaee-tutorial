@@ -24,12 +24,12 @@
                         		<div class="form-group">
                         			<label class="col-sm-1 control-label">级别</label>
 	                                <div class="col-sm-2">
-	                                	<form:select path="level" cssClass="form-control">
+	                                	<select name="level" class="form-control">
                                 			<option></option>
 	                                		<c:forEach items="${agentLevel }" var="entry">
-	                                			<form:option value="${entry.name() }" label="${entry.getName() }"/>
+	                                			<option value="${entry.name() }" <c:if test="${agent.level==entry }">selected</c:if>>${entry.getName() }</option>
 	                                		</c:forEach>
-	                                	</form:select>
+	                                	</select>
 	                                </div>
                         			<label class="col-sm-1 control-label">名称</label>
 	                                <div class="col-sm-2">
@@ -71,7 +71,7 @@
                                     <tr>
                                         <td>${agent.level}</td>
                                         <td>${agent.agentName}</td>
-                                        <td>${agent.clerkIdsStr}</td>
+                                        <td>${agent.userIdsStr}</td>
                                         <td>${agent.area}</td>
                                         <td>
                                             <a href="${pageContext.request.contextPath}/agent.do/agent_update.view?id=${agent.id}">修改</a>

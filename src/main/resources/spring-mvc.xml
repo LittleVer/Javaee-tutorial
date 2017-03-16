@@ -26,7 +26,13 @@
 
     <!--用于解析@RequestBody-->
     <bean id="conversionService"
-          class="org.springframework.format.support.FormattingConversionServiceFactoryBean"></bean>
+          class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+    	<!-- <property name="converters">
+	      <set>
+	        <bean class="cn.sh.ideal.task.manager.convert.StringToEnumDynamicHandleTypeConverter"/>
+	      </set>
+    	</property> -->
+    </bean>
 
     <!--视图解析器-->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -49,29 +55,6 @@
             </bean>
         </mvc:message-converters>
     </mvc:annotation-driven>
-    <!-- <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping" />
-    <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
-       <property name="messageConverters">
-           <list>
-               <bean class="org.springframework.http.converter.StringHttpMessageConverter">
-                   <property name="supportedMediaTypes">
-                       <list>
-                           <value>text/html; charset=UTF-8</value>
-                           <value>application/json;charset=UTF-8</value>
-                       </list>
-                   </property>
-               </bean>
-               <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
-                   <property name="supportedMediaTypes">
-                       <list>
-                           <value>text/html; charset=UTF-8</value>
-                           <value>application/json;charset=UTF-8</value>
-                       </list>
-                   </property>
-               </bean>
-           </list>
-       </property>
-  	</bean> -->
 
     <!--多部分解析器,用于解析文件上传时context-type为-->
     <!--Content-Type:multipart/form-data; boundary=...的情况-->

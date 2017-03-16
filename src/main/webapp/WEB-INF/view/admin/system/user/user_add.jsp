@@ -21,8 +21,10 @@
                     <div class="panel-body">
                         <div class="dataTable_wrapper">
                             <form action="${pageContext.request.contextPath}/user.do/add" method="post">
-                                <label>用户名</label>
+                                <label>登录名</label>
                                 <input class="form-control" name="userId">
+                                <label>用户名</label>
+                                <input class="form-control" name="username">
                                 <label>密码</label>
                                 <input multiple class="selectpicker form-control" name="password" type="password">
                                 <label>角色列表</label>

@@ -8,6 +8,7 @@
 
     <resultMap id="user_map" type="User">
         <id property="userId" column="user_id"/>
+        <result property="username" column="username"/>
         <result property="password" column="password"/>
         <result property="salt" column="salt"/>
         <result property="roleIdsStr" column="role_ids"/>
@@ -15,6 +16,11 @@
     <!--TODO 有严重的问题,这里要换成自增的id,把user表增加一个id字段,和username-->
     <select id="findAll" resultMap="user_map">
         SELECT * FROM user WHERE user_id != 'admin'
+    </select>
+    <select id="findByRole" resultMap="user_map" parameterType="string">
+        SELECT u.user_id,u.username FROM user u,role r 
+        WHERE find_in_set(r.id,u.role_ids)
+        AND r.role=#{role}
     </select>
 
     <select id="findById" parameterType="String" resultMap="user_map">
@@ -24,6 +30,9 @@
     <update id="update" parameterType="User">
         UPDATE user 
         <set>
+        	<if test="username!=null and username!=''">
+        		password = #{password},
+        	</if>
         	<if test="password!=null and password!=''">
         		password = #{password},
         	</if>
@@ -39,7 +48,7 @@
     </update>
 
     <insert id="add" parameterType="User">
-        INSERT INTO user(user_id,password,salt,role_ids,locked) VALUES(#{userId},#{password},#{salt},#{roleIdsStr},#{locked})
+        INSERT INTO user(user_id,username,password,salt,role_ids,locked) VALUES(#{userId},#{username},#{password},#{salt},#{roleIdsStr},#{locked})
     </insert>
 
     <select id="findByIdAndPassword" parameterType="map" resultMap="user_map">
@@ -49,6 +58,4 @@
     <delete id="delete" parameterType="String">
         DELETE FROM user WHERE user_id = #{value}
     </delete>
-
-
 </mapper>

@@ -64,6 +64,11 @@ public class UserBizImpl implements UserBiz {
     }
 
     @Override
+	public List<User> findByRole(String role) {
+    	return userDao.findByRole(role);
+	}
+
+	@Override
     public User findById(String id) {
         return userDao.findById(id);
     }
@@ -98,13 +103,8 @@ public class UserBizImpl implements UserBiz {
     }
 
     @Override
-    public User findByUsername(String username) {
-        return userDao.findById(username);
-    }
-
-    @Override
-    public Set<String> findRoles(String username) {
-        User user = findByUsername(username);
+    public Set<String> findRoles(String userid) {
+        User user = findById(userid);
         if (user == null) {
             return Collections.emptySet();
         }
@@ -112,8 +112,8 @@ public class UserBizImpl implements UserBiz {
     }
 
     @Override
-    public Set<String> findPermissions(String username) {
-        User user = findByUsername(username);
+    public Set<String> findPermissions(String userid) {
+        User user = findById(userid);
         if (user == null) {
             return Collections.emptySet();
         }

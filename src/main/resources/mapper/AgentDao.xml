@@ -10,7 +10,7 @@
         <id property="id" column="id"/>
         <result property="level" column="level"/>
         <result property="agentName" column="agent_name"/>
-        <result property="clerkId" column="clerk_id"/>
+        <result property="userIdsStr" column="user_ids"/>
         <result property="area" column="area"/>
     </resultMap>
 
@@ -46,15 +46,15 @@
         	<if test="area != null and area!=''">
         		area=#{area},
         	</if>
-        	<if test="clerkId != null">
-        		clerk_id=#{clerkId},
+        	<if test="userIdsStr != null and userIdsStr != ''">
+        		user_ids=#{clerkIdStr},
         	</if>
         </set>
         WHERE id = #{id}
     </update>
 
     <insert id="add" parameterType="Agent">
-        INSERT INTO agent(level,agent_name,clerk_id,area) VALUES(#{level},#{agentName},#{clerkId},#{area})
+        INSERT INTO agent(level,agent_name,user_ids,area) VALUES(#{level},#{agentName},#{userIdsStr},#{area})
     </insert>
 
     <delete id="delete" parameterType="long">
