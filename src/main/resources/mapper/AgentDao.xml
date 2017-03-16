@@ -18,14 +18,14 @@
     <select id="find" resultMap="agent_map" parameterType="Agent">
         SELECT * FROM agent
         <where>
-        	<if test="level!=null and level!=''">
+        	<if test="level!=null">
         		and level=#{level}
         	</if>
         	<if test="agentName!=null and agentName!=''">
-        		and agent_name=#{agentName}
+        		and agent_name like concat('%',#{agentName},'%')
         	</if>
         	<if test="area!=null and area!=''">
-        		and area=#{area}
+        		and area like concat('%',#{area},'%')
         	</if>
         </where>
     </select>
@@ -37,7 +37,7 @@
     <update id="update" parameterType="Agent">
         UPDATE agent 
         <set>
-        	<if test="level!=null and level!=''">
+        	<if test="level!=null">
         		level=#{level},
         	</if>
         	<if test="agentName!=null and agentName!=''">
@@ -47,7 +47,7 @@
         		area=#{area},
         	</if>
         	<if test="userIdsStr != null and userIdsStr != ''">
-        		user_ids=#{clerkIdStr},
+        		user_ids=#{userIdsStr},
         	</if>
         </set>
         WHERE id = #{id}
