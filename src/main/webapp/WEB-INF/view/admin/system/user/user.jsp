@@ -30,6 +30,7 @@
                             <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                                 <thead>
                                 <tr>
+                                    <th>登录名</th>
                                     <th>用户名</th>
                                     <th>密码</th>
                                     <th>权限</th>
@@ -40,6 +41,7 @@
                                 <c:forEach var="user" items="${userList}">
                                     <tr>
                                         <td>${user.userId}</td>
+                                        <td>${user.username}</td>
                                         <td>${user.password}</td>
                                         <td>${user.roleDesc}</td>
                                         <td>
