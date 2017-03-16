@@ -119,6 +119,11 @@
                                 <a href="${pageContext.request.contextPath}/car.do/car.view/0"> 车辆管理</a>
                             </li>
                         	</shiro:hasPermission>
+                        	<shiro:hasPermission name="procurement">
+                            <li>
+                                <a href="${pageContext.request.contextPath}/procurement.do/procurement.view/0"> 采购管理</a>
+                            </li>
+                        	</shiro:hasPermission>
                         </ul>
                         <!-- /.nav-second-level -->
                     </li>

@@ -56,6 +56,8 @@ $(document).ready(function () {
 					fileElementId : "file",
 					dataType : "json",
 					success : function(data, status) {
+						console.log("================");
+						console.log(data);
 						if (data && data.resultCode == "0") {
 							swal('通知','上传成功','success');
 						} else {
@@ -63,6 +65,8 @@ $(document).ready(function () {
 						}
 					},
 					error : function(data, status, e) {
+						console.log("=======111111=========");
+						console.log(data);
 						swal('通知','上传失败','error');
 					}
 				});
