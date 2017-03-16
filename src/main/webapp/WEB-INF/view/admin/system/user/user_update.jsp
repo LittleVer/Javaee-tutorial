@@ -6,7 +6,7 @@
 <!-- Page Content -->
 <div id="page-wrapper">
     <div class="container-fluid">
-    	<jsp:include page="/breadcrumb.jsp"></jsp:include>
+    	<jsp:include page="/WEB-INF/view/admin/breadcrumb.jsp"></jsp:include>
         <div>
             <h1 class="page-header">用户管理</h1>
         </div>
@@ -22,9 +22,10 @@
                     <div class="panel-body">
                         <div class="dataTable_wrapper">
                             <form action="${pageContext.request.contextPath}/user.do/update" method="post">
-                                <label name="id">用户名：${user.userId}</label>
+                                <label name="id">登录名：${user.userId}</label>
                                 <input type="hidden" name="userId" value="${user.userId}">
-                                <p></p>
+                                <label>用户名</label>
+                                <input class="form-control" name="username"value="${user.username }">
                                 <label>新密码</label>
                                 <input class="form-control" name="password" type="password">
                                 <input name="salt" type="hidden" value="${user.salt} ">

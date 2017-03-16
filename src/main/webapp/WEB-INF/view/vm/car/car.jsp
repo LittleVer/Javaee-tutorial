@@ -1,10 +1,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://www.springframework.org/tags/form"  prefix="form"%>
 <jsp:include page="/WEB-INF/view/admin/nav.jsp"></jsp:include>
 <!-- Page Content -->
 <div id="page-wrapper">
     <div class="container-fluid">
-    	<jsp:include page="/breadcrumb.jsp"></jsp:include>
+    	<jsp:include page="/WEB-INF/view/admin/breadcrumb.jsp"></jsp:include>
         <div class="panel-heading">
         </div>
         <div class="row">
@@ -16,36 +17,61 @@
                     <!-- /.panel-heading -->
                     <div class="panel-body">
                         <div class="dataTable_wrapper">
-                        	<form class="searchForm form-horizontal" action="${pageContext.request.contextPath}/car.do/car.view/0" method="post">
-                        		<h5>查询条件</h5>
+                        	<form:form cssClass="searchForm form-horizontal" commandName="car" action="${pageContext.request.contextPath}/car.do/car.view/" method="post">
+                        		<button type="button" class="btn btn-default pull-right" id="toggle-advanced-search">查询条件<i class="fa fa-angle-double-down"></i></button>
+                        		<div class="clearfix"></div>
+                        		<div class="row-fluid" id="div-advanced-search" style="display:none;">
+                        		<div class="form-group">
+                        			<label class="col-sm-1 control-label">车辆编号</label>
+	                                <div class="col-sm-2">
+	                                	<form:input path="carId" cssClass="form-control"/>
+	                                </div>
+                        			<label class="col-sm-1 control-label">是否上架</label>
+	                                <div class="col-sm-2">
+	                                	<form:select path="isSale" cssClass="form-control">
+	                                		<form:option value=""/>
+	                                		<form:option label="上架" value="true"/>
+	                                		<form:option label="下架" value="false"/>
+	                                	</form:select>
+	                                </div>
+                        		</div>
                         		<div class="form-group">
 	                                <label class="col-sm-1 control-label">高</label>
 	                                <div class="col-sm-2">
-	                                	<input class="form-control" type="number" name="high">
+	                                	<input class="form-control" type="number" name="high" value="${car.high }">
 	                                </div>
 	                                <label class="col-sm-1 control-label">长</label>
 	                                <div class="col-sm-2">
-	                                	<input class="form-control" type="number" name="length">
+	                                	<input class="form-control" type="number" name="length" value="${car.length }">
 	                                </div>
 	                                <label class="col-sm-1 control-label">宽</label>
 	                                <div class="col-sm-2">
-	                                	<input class="form-control" type="number" name="wide">
+	                                	<input class="form-control" type="number" name="wide" value="${car.wide }">
 	                                </div>
 	                                <label class="col-sm-1 control-label">重</label>
 	                                <div class="col-sm-2">
-	                                	<input class="form-control" type="number" name="weight">
+	                                	<input class="form-control" type="number" name="weight" value="${car.weight }">
 	                                </div>
                                 </div>
+                                </div>
                                 <div class="form-group">
-                                	<label class="col-sm-10 control-label"></label>
+                                	<div class="col-sm-2">
+                                		<a href="${pageContext.request.contextPath}/car.do/car_add.view" class="btn btn-primary" role="button">新增</a>
+                                		<button type="button" class="btn btn-primary" onclick="uploader.uploadModal('${pageContext.request.contextPath}/car.do/import','${pageContext.request.contextPath}/template/car_tpl.xlsx')">批量上传</button>
+                                	</div>
+                                	<label class="col-sm-8 control-label"></label>
+                                	<div id="searchBtns" style="display:none;">
                                 	<div class="col-sm-1">
-                                		<button type="submit" class="btn btn-primary form-control">查询</button>
+                                		<button type="button" class="btn btn-primary form-control searchBtn">查询</button>
                                 	</div>
                                 	<div class="col-sm-1">
                                 		<button type="reset" class="btn btn-primary form-control">重置</button>
                                 	</div>
+<<<<<<< HEAD
+=======
+                                	</div>
+>>>>>>> dev
                                 </div>
-                        	</form>
                             <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                                 <thead>
                                 <tr>
@@ -80,11 +106,17 @@
                                     </tr>
                                 </c:forEach>
                                 </tbody>
+<<<<<<< HEAD
                             </table>               
                              <a href="${pageContext.request.contextPath}/car.do/car_add.view" class="btn btn-primary" role="button">添加车辆</a>
                             <button class="btn btn-primary" onclick="uploader.uploadModal('${pageContext.request.contextPath}/car.do/import','${pageContext.request.contextPath}/template/car_tpl.xlsx')">批量上传</button>    
                            <jsp:include page="/WEB-INF/view/admin/pageSplit.jsp"></jsp:include>
                            
+=======
+                            </table>
+                           <jsp:include page="/WEB-INF/view/admin/pageSplit.jsp"></jsp:include>
+                        </form:form>
+>>>>>>> dev
                         </div>
                         <!-- /.table-responsive -->
                     </div>

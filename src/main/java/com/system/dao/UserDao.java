@@ -24,5 +24,5 @@ public interface UserDao {
 
     public void updatePassword(@Param("userId") String id, @Param("password") String password);
 
-    User findByUsername(String username);
+	public List<User> findByRole(String role);
 }

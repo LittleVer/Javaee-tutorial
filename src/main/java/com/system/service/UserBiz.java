@@ -1,18 +1,17 @@
 package com.system.service;
 
 
-import com.entity.User;
-import com.entity.vo.UserVo;
-
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 import java.util.Set;
+
+import com.entity.User;
 
 /**
  * Created by c0de8ug on 16-2-9.
  */
 public interface UserBiz {
-    public List<UserVo> findAll() throws InvocationTargetException, IllegalAccessException;
+    public List<User> findAll() throws InvocationTargetException, IllegalAccessException;
 
     public User findById(String id);
 
@@ -25,9 +24,9 @@ public interface UserBiz {
     public void changePassword(String userId, String newPassword);
 
 
-    public User findByUsername(String username);
-
     public Set<String> findRoles(String username);
 
     public Set<String> findPermissions(String username);
+
+	public List<User> findByRole(String string);
 }

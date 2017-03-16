@@ -1,12 +1,17 @@
 package com.vm.controller;
 
+import java.util.List;
+
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.entity.Standard;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.vm.service.StandardBiz;
 
 @Controller
@@ -15,11 +20,22 @@ public class StandardController {
 
     @Autowired
     private StandardBiz standardBiz;
-
+    
     @RequiresPermissions("standard:query")
     @RequestMapping("standard.view")
-    public String standardView(Standard standard,Model m) {
-        m.addAttribute("standardList", standardBiz.find(standard));
+    public String standardView(Model model) {
+        return "forward:/standard.do/standard.view/0/10";
+    }
+
+    @RequiresPermissions("standard:query")
+    @RequestMapping("standard.view/{pageNum}/{pageSize}")
+    public String standardView(Standard standard,Model m,@PathVariable("pageNum") int pageNum,
+    		@PathVariable("pageSize") int pageSize) {
+    	PageHelper.startPage(pageNum, pageSize);
+    	List<Standard> list =  standardBiz.find(standard);
+    	PageInfo<Standard> page = new PageInfo<Standard>(list);
+        m.addAttribute("standardList", list);
+        m.addAttribute("page", page);
         return "/vm/standard/standard";
     }
 

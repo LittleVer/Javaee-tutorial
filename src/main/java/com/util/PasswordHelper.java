@@ -32,6 +32,15 @@ public class PasswordHelper {
     public void setHashIterations(int hashIterations) {
         this.hashIterations = hashIterations;
     }
+    
+    public static void main(String[] args) {
+    	PasswordHelper ph = new PasswordHelper();
+    	User user = new User();
+    	user.setUserId("admin");
+    	user.setPassword("123456");
+    	ph.encryptPassword(user);
+    	System.out.println(user);
+	}
 
     public void encryptPassword(User user) {
 

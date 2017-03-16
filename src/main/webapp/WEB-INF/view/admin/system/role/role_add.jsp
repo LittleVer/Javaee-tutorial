@@ -5,7 +5,7 @@
 <!-- Page Content -->
 <div id="page-wrapper">
     <div class="container-fluid">
-		<jsp:include page="/breadcrumb.jsp"></jsp:include>
+		<jsp:include page="/WEB-INF/view/admin/breadcrumb.jsp"></jsp:include>
         <div>
             <h1 class="page-header">用户管理</h1>
         </div>

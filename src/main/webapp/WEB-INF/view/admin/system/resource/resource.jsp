@@ -5,7 +5,7 @@
 <!-- Page Content -->
 <div id="page-wrapper">
     <div class="container-fluid">
-    	<jsp:include page="/breadcrumb.jsp"></jsp:include>
+    	<jsp:include page="/WEB-INF/view/admin/breadcrumb.jsp"></jsp:include>
         <div>
             <h1 class="page-header">权限管理</h1>
         </div>
@@ -20,6 +20,12 @@
                     <!-- /.panel-heading -->
                     <div class="panel-body">
                         <div class="dataTable_wrapper">
+                        	<form class="searchForm form-horizontal" action="${pageContext.request.contextPath}/resource.do/resource.view/" method="post">
+                                <div class="form-group">
+                                	<div class="col-sm-2">
+                                		<a href="${pageContext.request.contextPath}/standard.do/standard_add.view" class="btn btn-primary" role="button">新增</a>
+                                	</div>
+                                </div>
                             <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                                 <thead>
                                 <tr>
@@ -34,6 +40,7 @@
                                         <td>${resource.name}</td>
                                         <td>${resource.permission}</td>
                                         <td>
+                                        	<a href="${pageContext.request.contextPath}/resource.do/resource_update.view?id=${resource.id}">修改</a>
                                             <a href="${pageContext.request.contextPath}/resource.do/delete?id=${resource.id}"
                                                onclick="return confirm('是否要删除该权限')">删除</a>
                                         </td>
@@ -41,9 +48,8 @@
                                 </c:forEach>
                                 </tbody>
                             </table>
-                            <a href="${pageContext.request.contextPath}/resource.do/resource_add.view" class="btn btn-primary"
-                               role="button">添加权限</a>
-                        </div>
+                           <jsp:include page="/WEB-INF/view/admin/pageSplit.jsp"></jsp:include>
+                        </form>
                         <!-- /.table-responsive -->
                     </div>
                     <!-- /.panel-body -->

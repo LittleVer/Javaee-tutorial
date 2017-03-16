@@ -37,11 +37,11 @@ public class UserRealm extends AuthorizingRealm {
 
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
-        String username = (String)principals.getPrimaryPrincipal();
+        String userid = (String)principals.getPrimaryPrincipal();
 
         SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
-        authorizationInfo.setRoles(userBiz.findRoles(username));
-        if("admin".equals(username)) {
+        authorizationInfo.setRoles(userBiz.findRoles(userid));
+        if("admin".equals(userid)) {
         	List<Resource> list = resourceBiz.findAll();
         	Set<String> set = Sets.newHashSet();
         	for(Resource r : list) {
@@ -49,7 +49,7 @@ public class UserRealm extends AuthorizingRealm {
         	}
         	authorizationInfo.setStringPermissions(set);
         } else {
-        	authorizationInfo.setStringPermissions(userBiz.findPermissions(username));
+        	authorizationInfo.setStringPermissions(userBiz.findPermissions(userid));
         }
         return authorizationInfo;
     }
@@ -57,9 +57,9 @@ public class UserRealm extends AuthorizingRealm {
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authcToken) throws AuthenticationException {
     	UsernamePasswordToken token = (UsernamePasswordToken) authcToken;  
-        String username = token.getUsername();
+        String userid = token.getUsername();
 
-        User user = userBiz.findByUsername(username);
+        User user = userBiz.findById(userid);
 
         if(user == null) {
             throw new UnknownAccountException();//没找到帐号

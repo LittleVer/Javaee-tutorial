@@ -2,7 +2,11 @@ $(document).ready(function () {
 	$('html').niceScroll({cursorcolor:"#ccc", horizrailenabled: false, enablekeyboard: false});
 	/* dataTable = $('#dataTables-example').DataTable({
 	  //dom: '<"toolbar">',
+      searching: false,
+      ordering:  false,
+      paging: false,
       responsive: true,
+      info: false,
       language: {
     		"srocessing":   "处理中...",
     		"lengthMenu":   "显示 _MENU_ 项结果",
@@ -82,4 +86,30 @@ $(document).ready(function () {
 	    }
     };
     uploader.init();
+    
+    $("#toggle-advanced-search").click(function(){
+        $("i",this).toggleClass("fa-angle-double-down fa-angle-double-up");
+        $("#div-advanced-search").slideToggle("fast");
+        $('#searchBtns').fadeToggle("fast");
+    });
+    
+    //分页事件
+    $('.pageNum').click(function(){
+    	var action = $('.searchForm').attr('action');
+    	$('.searchForm').attr('action',action + $(this).data('value') + '/' + $('.pageSize').val());
+    	search();
+    });
+    $('.pageSize').change(function(){
+    	var action = $('.searchForm').attr('action');
+    	$('.searchForm').attr('action',action + '0/' + this.value);
+    	search();
+    });
+    $('.searchBtn').click(function(){
+    	var action = $('.searchForm').attr('action');
+    	$('.searchForm').attr('action',action + ($('.pageNum.disabled').data('value')?$('.pageNum.disabled').data('value'):0) + '/' + $('.pageSize').val());
+    	search();
+    });
+    function search() {
+    	$('.searchForm').submit();
+    }
   });

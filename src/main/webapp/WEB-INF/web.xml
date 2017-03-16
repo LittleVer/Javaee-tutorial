@@ -55,6 +55,10 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>default</servlet-name>
+        <url-pattern>*.less</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>default</servlet-name>
         <url-pattern>*.html</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
@@ -73,7 +77,18 @@
         <servlet-name>default</servlet-name>
         <url-pattern>*.ttf</url-pattern>
     </servlet-mapping>
-
+	
+	<!-- tld配置 -->
+	<jsp-config>
+		<taglib>
+			<taglib-uri>http://www.springframework.org/tags/form</taglib-uri>
+			<taglib-location>tld/spring-form.tld</taglib-location>
+		</taglib>
+		<taglib>
+			<taglib-uri>http://www.springframework.org/tags</taglib-uri>
+			<taglib-location>tld/spring.tld</taglib-location>
+		</taglib>
+	</jsp-config>
 
     <!-- shiro 安全过滤器,要放在其他功能性过滤器的前边 -->
     <filter>

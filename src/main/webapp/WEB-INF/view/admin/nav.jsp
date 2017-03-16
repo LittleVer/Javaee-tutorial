@@ -116,7 +116,12 @@
                         	</shiro:hasPermission>
                         	<shiro:hasPermission name="car">
                             <li>
-                                <a href="${pageContext.request.contextPath}/car.do/car.view/0"> 车辆管理</a>
+                                <a href="${pageContext.request.contextPath}/car.do/car.view"> 车辆管理</a>
+                            </li>
+                        	</shiro:hasPermission>
+                        	<shiro:hasPermission name="agent">
+                            <li>
+                                <a href="${pageContext.request.contextPath}/agent.do/agent.view"> 代理商管理</a>
                             </li>
                         	</shiro:hasPermission>
                         	<shiro:hasPermission name="procurement">

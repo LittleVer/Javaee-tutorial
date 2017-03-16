@@ -1,17 +1,13 @@
 package com.entity;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.hibernate.validator.constraints.NotBlank;
-import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 
-/**
- * Created by c0de8ug on 16-2-9.
- */
 public class User {
-	
     String username; //用户名
     @NotBlank
     String userId;
@@ -20,6 +16,7 @@ public class User {
     String salt;
     private List<Long> roleIds; //拥有的角色列表
     private String roleIdsStr;
+    private String roleDesc;
     private Boolean locked = Boolean.FALSE;
 
 
@@ -55,7 +52,15 @@ public class User {
         return roleIds;
     }
 
-    public void setRoleIds(List<Long> roleIds) {
+    public String getRoleDesc() {
+		return roleDesc;
+	}
+
+	public void setRoleDesc(String roleDesc) {
+		this.roleDesc = roleDesc;
+	}
+
+	public void setRoleIds(List<Long> roleIds) {
     	this.roleIds = roleIds;
     	StringBuilder s = new StringBuilder();
         int i = 0;
@@ -82,7 +87,7 @@ public class User {
     }
 
     public String getCredentialsSalt() {
-        return username + salt;
+        return userId + salt;
     }
 
 	public String[] getPasswords() {
@@ -111,4 +116,13 @@ public class User {
             roleIds.add(Long.valueOf(roleIdStr));
         }
     }
+
+	@Override
+	public String toString() {
+		return "User [username=" + username + ", userId=" + userId
+				+ ", password=" + password + ", passwords="
+				+ Arrays.toString(passwords) + ", salt=" + salt + ", roleIds="
+				+ roleIds + ", roleIdsStr=" + roleIdsStr + ", roleDesc="
+				+ roleDesc + ", locked=" + locked + "]";
+	}
 }
