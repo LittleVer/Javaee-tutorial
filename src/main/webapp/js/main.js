@@ -61,13 +61,19 @@ $(document).ready(function () {
 					dataType : "json",
 					success : function(data, status) {
 						if (data && data.resultCode == "0") {
-							swal('通知','上传成功','success');
+							swal({
+								title:'通知',
+								text:'上传成功',
+								type:'success',
+							}, function(){
+								location.reload();
+							});
 						} else {
-							swal('通知','上传失败','error');
+							swal('通知','上传失败'+(data.resultMsg?':'+data.resultMsg:''),'error');
 						}
 					},
 					error : function(data, status, e) {
-						swal('通知','上传失败','error');
+						swal('通知','上传失败:服务器异常','error');
 					}
 				});
 				return false;

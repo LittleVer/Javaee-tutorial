@@ -13,6 +13,8 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.interceptor.TransactionAspectSupport;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -97,6 +99,7 @@ public class CarController {
 	@RequiresPermissions("car:import")
     @RequestMapping("import")
     @ResponseBody
+    @Transactional()
     public Map<String,Object> imp(@RequestParam("file") CommonsMultipartFile file){
     	Workbook wb = null;
     	try {
@@ -121,6 +124,10 @@ public class CarController {
 				Car car = new Car(carId,isSale,high,length,wide,weight);
 				carBiz.add(car);
 			}
+		} catch(NullPointerException e) {
+			log.error("上传文件解析失败",e);
+			TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+			return ResultMapUtil.getFailMap("字段不允许为空");
 		} catch (IOException e) {
 			log.error("上传文件解析失败",e);
 			return ResultMapUtil.getFailMap();

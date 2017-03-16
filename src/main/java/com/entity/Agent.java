@@ -16,17 +16,17 @@ public class Agent implements Serializable{
     private List<String> userIds;
     private String userIdsStr;
     private String area;
+    
+    private volatile String usernames;
 	
 	public Agent() {
 		super();
 	}
 
-	public Agent(AgentLevel level, String agentName, String userIdsStr,
-			String area) {
+	public Agent(AgentLevel level, String agentName, String area) {
 		super();
 		this.level = level;
 		this.agentName = agentName;
-		this.setUserIdsStr(userIdsStr);
 		this.area = area;
 	}
 
@@ -73,8 +73,8 @@ public class Agent implements Serializable{
 
 	public void setUserIdsStr(String userIdsStr) {
 		this.userIdsStr = userIdsStr;
+		this.userIds = Lists.newArrayList();
 		if(!StringUtils.isEmpty(userIdsStr)) {
-			this.userIds = Lists.newArrayList();
 			String[] ids = userIdsStr.split(",");
 			for(String id : ids) {
 				this.userIds.add(id);
@@ -88,6 +88,14 @@ public class Agent implements Serializable{
 
 	public void setArea(String area) {
 		this.area = area;
+	}
+
+	public String getUsernames() {
+		return usernames;
+	}
+
+	public void setUsernames(String usernames) {
+		this.usernames = usernames;
 	}
 
 	@Override

@@ -21,6 +21,7 @@
                     <div class="panel-body">
                         <div class="dataTable_wrapper">
                             <form:form action="${pageContext.request.contextPath}/agent.do/update" commandName="agent" method="post" cssClass="form-horizontal">
+                            	<form:hidden path="id"/>
                             	<div class="form-group">
 	                                <label class="col-sm-1 control-label">代理商级别</label>
 	                                <div class="col-sm-11">
