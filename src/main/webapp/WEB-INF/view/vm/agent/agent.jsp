@@ -69,9 +69,9 @@
                                 <tbody>
                                 <c:forEach var="agent" items="${agentList}">
                                     <tr>
-                                        <td>${agent.level}</td>
+                                        <td>${agent.level.getName()}</td>
                                         <td>${agent.agentName}</td>
-                                        <td>${agent.userIdsStr}</td>
+                                        <td>${agent.usernames}</td>
                                         <td>${agent.area}</td>
                                         <td>
                                             <a href="${pageContext.request.contextPath}/agent.do/agent_update.view?id=${agent.id}">修改</a>

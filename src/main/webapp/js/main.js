@@ -62,16 +62,37 @@ $(document).ready(function () {
 					success : function(data, status) {
 						console.log("================");
 						console.log(data);
+						$('.uploadFiles').show();
 						if (data && data.resultCode == "0") {
-							swal('通知','上传成功','success');
+							swal({
+								title:'通知',
+								text:'上传成功',
+								type:'success',
+							}, function(){
+								if(data.uploadType&&data.uploadType=="procurement"){
+									var files="<a src='"+data.data.filePath+"'>"+data.data.originalFilename+"</a>" +
+											"<span class='glyphicon glyphicon-remove removeFile'></span>"
+									$('.uploadFiles').html(files);
+									$('.procureFilePath').val(data.data.filePath);
+									$('.procureFileName').val(data.data.originalFilename);
+								   $('.removeFile').click(function(){
+									   debugger;
+									   $(this).prev()[0].remove();
+								       $(this).remove();
+								       $('.procureFilePath').val();
+								       $('.procureFileName').val();
+								    });
+								}else{
+									location.reload();
+								}
+							});
 						} else {
-							swal('通知','上传失败','error');
+							swal('通知','上传失败'+(data.resultMsg?':'+data.resultMsg:''),'error');
 						}
 					},
 					error : function(data, status, e) {
-						console.log("=======111111=========");
-						console.log(data);
 						swal('通知','上传失败','error');
+						swal('通知','上传失败:服务器异常','error');
 					}
 				});
 				return false;
@@ -92,7 +113,7 @@ $(document).ready(function () {
         $("#div-advanced-search").slideToggle("fast");
         $('#searchBtns').fadeToggle("fast");
     });
-    
+
     //分页事件
     $('.pageNum').click(function(){
     	var action = $('.searchForm').attr('action');

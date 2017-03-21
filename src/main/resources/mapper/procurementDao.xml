@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.vm.dao.ProcurementDao">
+
+    <resultMap id="procurement_map" type="Procurement">
+        <id property="id" column="id"/>
+        <result property="procureId" column="procure_id"/>
+        <result property="inventory" column="inventory"/>
+        <result property="price" column="price"/>
+        <result property="procureTime" column="procure_time"/>
+    </resultMap>
+
+
+    <select id="find" resultMap="procurement_map" parameterType="Procurement">
+        SELECT id, procure_id,inventory,price,date_format(procure_time,'%Y-%m-%d %H:%m:%s') as procure_time  FROM procurement
+        <where>1=1
+        	<if test="startTime !=null and startTime !=''">
+        		and procure_time &gt;= #{startTime}
+        	</if>
+        	<if test="endTime !=null and endTime !=''">
+        		and procure_time &lt;=#{endTime}
+        	</if>
+        	<if test="startPrice !=null and startPrice !=''">
+        		and price &gt;= #{startPrice}
+        	</if>
+        	<if test="endPrice !=null and endPrice !=''">
+        		and price &lt;=#{endPrice}
+        	</if>
+        </where>
+    </select>
+
+    <select id="findById" parameterType="long" resultMap="procurement_map">
+        SELECT  id, procure_id,inventory,price,date_format(procure_time,'%Y-%m-%d %H:%m:%s') as procure_time FROM procurement WHERE id = #{value}
+    </select>
+
+    <update id="update" parameterType="Procurement">
+        UPDATE procurement 
+        <set>
+        	<if test="procureId !=null">
+        		procure_id=#{procureId},
+        	</if>
+        	<if test="inventory != null">
+        		inventory=#{inventory},
+        	</if>
+        	<if test="price != null">
+        		price=#{price},
+        	</if>
+        </set>
+        WHERE id = #{id}
+    </update>
+
+    <insert id="add" parameterType="Procurement">
+        INSERT INTO procurement(procure_id,inventory,price,procure_time,create_time) VALUES(#{procureId},#{inventory},#{price},#{procureTime},now())
+    </insert>
+
+    <delete id="delete" parameterType="long">
+        DELETE FROM procurement WHERE id = #{id}
+    </delete>
+</mapper>

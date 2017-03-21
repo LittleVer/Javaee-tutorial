@@ -67,10 +67,8 @@
                                 	<div class="col-sm-1">
                                 		<button type="reset" class="btn btn-primary form-control">重置</button>
                                 	</div>
-<<<<<<< HEAD
-=======
                                 	</div>
->>>>>>> dev
+
                                 </div>
                             <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                                 <thead>
@@ -106,17 +104,10 @@
                                     </tr>
                                 </c:forEach>
                                 </tbody>
-<<<<<<< HEAD
-                            </table>               
-                             <a href="${pageContext.request.contextPath}/car.do/car_add.view" class="btn btn-primary" role="button">添加车辆</a>
-                            <button class="btn btn-primary" onclick="uploader.uploadModal('${pageContext.request.contextPath}/car.do/import','${pageContext.request.contextPath}/template/car_tpl.xlsx')">批量上传</button>    
-                           <jsp:include page="/WEB-INF/view/admin/pageSplit.jsp"></jsp:include>
-                           
-=======
                             </table>
                            <jsp:include page="/WEB-INF/view/admin/pageSplit.jsp"></jsp:include>
                         </form:form>
->>>>>>> dev
+
                         </div>
                         <!-- /.table-responsive -->
                     </div>

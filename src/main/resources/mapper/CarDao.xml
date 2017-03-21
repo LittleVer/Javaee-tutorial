@@ -19,24 +19,24 @@
 
     <select id="find" resultMap="car_map" parameterType="Car">
         SELECT * FROM car
-        <where>
+        <where> 1=1
         	<if test="isSale!=null">
-        		is_sale=#{isSale,jdbcType=BOOLEAN}
+        		and is_sale=#{isSale,jdbcType=BOOLEAN}
         	</if>
         	<if test="carId!=null and carId!=''">
-        		car_id=#{carId}
+        		and car_id=#{carId}
         	</if>
         	<if test="high!=null">
-        		high=#{high}
+        		and high=#{high}
         	</if>
         	<if test="length!=null">
-        		length=#{length}
+        		and length=#{length}
         	</if>
         	<if test="wide!=null">
-        		wide=#{wide}
+        		and wide=#{wide}
         	</if>
         	<if test="weight!=null">
-        		weight=#{weight}
+        		and weight=#{weight}
         	</if>
         </where>
         order by is_sale,car_id
