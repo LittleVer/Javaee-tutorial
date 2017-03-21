@@ -56,13 +56,15 @@
         </property>
         <property name="filterChainDefinitions">
             <value>
+            	/**/external/** = anon
             	/**/import = anon
                 /login.jsp = anon
-                /logout = logout
                 /dist/** = anon
                 /img/** = anon
+                /css/** = anon
                 /js/** = anon
                 /bower_components/** = anon
+                /logout = logout
                 /** = authc
             </value>
         </property>

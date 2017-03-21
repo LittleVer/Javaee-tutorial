@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.vm.dao.AreaDao">
+
+    <resultMap id="area_map" type="Area">
+        <id property="id" column="id"/>
+        <result property="area" column="area"/>
+    </resultMap>
+
+
+    <select id="find" resultMap="area_map" parameterType="Area">
+        SELECT * FROM area
+        <where>
+        	<if test="area != null and area != ''">
+        		area like concat('%',#{area},'%')
+        	</if>
+        </where>
+    </select>
+
+    <select id="findById" parameterType="long" resultMap="area_map">
+        SELECT * FROM area WHERE id = #{value}
+    </select>
+
+    <update id="update" parameterType="Area">
+        UPDATE area 
+        <set>
+        	<if test="area != null and area != ''">
+        		area = #{area},
+        	</if>
+        </set>
+        WHERE id = #{id}
+    </update>
+
+    <insert id="add" parameterType="area">
+        INSERT INTO area(area) VALUES(#{area})
+    </insert>
+
+    <delete id="delete" parameterType="long">
+        DELETE FROM area WHERE id = #{id}
+    </delete>
+</mapper>

@@ -1,4 +1,6 @@
 $(document).ready(function () {
+	$("[data-toggle='tooltip']").tooltip();
+	$("[data-toggle='popover']").popover();
 	$('html').niceScroll({cursorcolor:"#ccc", horizrailenabled: false, enablekeyboard: false});
     dataTable = $('#dataTables-example').DataTable({
 	  //dom: '<"toolbar">',

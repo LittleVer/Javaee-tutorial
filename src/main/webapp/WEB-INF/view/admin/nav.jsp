@@ -123,6 +123,16 @@
                                 <a href="${pageContext.request.contextPath}/agent.do/agent.view"> 代理商管理</a>
                             </li>
                         	</shiro:hasPermission>
+                        	<shiro:hasPermission name="vendor">
+                            <li>
+                                <a href="${pageContext.request.contextPath}/vendor.do/vendor.view"> 厂商管理</a>
+                            </li>
+                        	</shiro:hasPermission>
+                        	<shiro:hasPermission name="area">
+                            <li>
+                                <a href="${pageContext.request.contextPath}/area.do/area.view"> 区域管理</a>
+                            </li>
+                        	</shiro:hasPermission>
                         </ul>
                         <!-- /.nav-second-level -->
                     </li>

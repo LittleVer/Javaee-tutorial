@@ -18,6 +18,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.interceptor.TransactionAspectSupport;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,104 +28,114 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import com.entity.Agent;
-import com.entity.enumeration.AgentLevel;
+import com.entity.Car;
+import com.entity.Order;
+import com.entity.enumeration.OrderType;
+import com.entity.enumeration.Status;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.system.service.UserBiz;
 import com.util.ResultMapUtil;
 import com.vm.service.AgentBiz;
-import com.vm.service.AreaBiz;
+import com.vm.service.CarBiz;
+import com.vm.service.OrderBiz;
 
 @Controller
-@RequestMapping("agent.do")
-public class AgentController {
-	private Logger log = Logger.getLogger(AgentController.class);
+@RequestMapping("order.do")
+public class OrderController {
+	private Logger log = Logger.getLogger(OrderController.class);
 
     @Autowired
+    private OrderBiz orderBiz;
+    @Autowired
+    private CarBiz carBiz;
+    @Autowired
     private AgentBiz agentBiz;
-    @Autowired
-    private UserBiz userBiz;
-    @Autowired
-    private AreaBiz areaBiz;
+    
     
     @InitBinder    
     protected void initBinder(WebDataBinder binder) {
-    	binder.registerCustomEditor(AgentLevel.class, new PropertyEditorSupport(){
+    	binder.registerCustomEditor(OrderType.class, new PropertyEditorSupport(){
     		@Override  
 		    public void setAsText(String text) throws IllegalArgumentException {  
     			if(!StringUtils.isEmpty(text))
-    				this.setValue(AgentLevel.valueOf(text));  
+    				this.setValue(OrderType.valueOf(text));  
 		    }  
 		    @Override  
 		    public String getAsText() {  
-		    	AgentLevel value = (AgentLevel)this.getValue();  
+		    	OrderType value = (OrderType)this.getValue();  
 		        return value.name();  
 		    }  
     	});
     }
     
-    @RequiresPermissions("agent:query")
-    @RequestMapping("agent.view")
-    public String agentView(Model model) {
-        return "forward:/agent.do/agent.view/0/10";
+    @RequiresPermissions("order:query")
+    @RequestMapping("order.view")
+    public String orderView(Model model) {
+        return "forward:/order.do/order.view/0/10";
     }
 
-    @RequiresPermissions("agent:query")
-    @RequestMapping("agent.view/{pageNum}/{pageSize}")
-    public String agentView(Agent agent,Model m,@PathVariable("pageNum") int pageNum,
+    @RequiresPermissions("order:query")
+    @RequestMapping("order.view/{pageNum}/{pageSize}")
+    public String orderView(Order order,Model m,@PathVariable("pageNum") int pageNum,
     		@PathVariable("pageSize") int pageSize) {
     	PageHelper.startPage(pageNum, pageSize);
-    	List<Agent> list =  agentBiz.find(agent);
-    	PageInfo<Agent> page = new PageInfo<Agent>(list);
-        m.addAttribute("agentList", list);
+    	List<Order> list =  orderBiz.find(order);
+    	PageInfo<Order> page = new PageInfo<Order>(list);
+        m.addAttribute("orderList", list);
         m.addAttribute("page", page);
-        return "/vm/agent/agent";
+        return "/vm/order/order";
     }
 
-    @RequiresPermissions("agent:add")
-    @RequestMapping("agent_add.view")
-    public String agentAddView(Model m) {
-    	m.addAttribute("agent", new Agent());
-    	m.addAttribute("agentLevel", AgentLevel.values());
-    	m.addAttribute("areaList", areaBiz.find(null));
-    	m.addAttribute("userList", userBiz.findByRole("agent"));
-        return "/vm/agent/agent_add";
+    @RequestMapping("external/order_add.view")
+    public String orderAddView(ModelMap m) {
+    	String openid = (String) m.get("openid");
+    	String orderType = (String) m.get("orderType");
+    	if(StringUtils.isEmpty(openid)) {
+    		openid = "test";
+    		m.put("openid", openid);
+    	}
+    	if(StringUtils.isEmpty(orderType)) {
+    		orderType = OrderType.DISTRIBUTION.name();
+    		m.put("orderType", orderType);
+    	}
+    	Agent agent = agentBiz.findByOpenId(openid);
+    	List<Car> carList = carBiz.findByLevel(agent.getLevel());
+    	m.put("carList", carList);
+        return "/vm/order/external_order_add";
     }
 
-    @RequiresPermissions("agent:update")
-    @RequestMapping("agent_update.view")
-    public String agentUpdateView(Long id,Model m) {
-    	m.addAttribute("agentLevel", AgentLevel.values());
-    	m.addAttribute("agent",agentBiz.findById(id));
-    	m.addAttribute("areaList", areaBiz.find(null));
-    	m.addAttribute("userList", userBiz.findByRole("agent"));
-        return "/vm/agent/agent_update";
+    @RequestMapping("external/add")
+    public String add(Order order) {
+    	order.setStatus(Status.START);
+    	orderBiz.add(order);
+    	return "/vm/order/external_order_add_success";
+    }
+    
+    @RequiresPermissions("order:update")
+    @RequestMapping("order_update.view")
+    public String orderUpdateView(Long id,Model m) {
+    	m.addAttribute("order",orderBiz.findById(id));
+        return "/vm/order/order_update";
     }
 
-    @RequiresPermissions("agent:add")
-    @RequestMapping("add")
-    public String add(Agent agent) {
-        agentBiz.add(agent);
-        return "redirect:/agent.do/agent.view";
-    }
 
-    @RequiresPermissions("agent:update")
+    @RequiresPermissions("order:update")
     @RequestMapping("update")
-    public String update(Agent agent) {
-        agentBiz.update(agent);
-        return "redirect:/agent.do/agent.view";
+    public String update(Order order) {
+        orderBiz.update(order);
+        return "redirect:/order.do/order.view";
     }
 
-    @RequiresPermissions("agent:delete")
+    @RequiresPermissions("order:delete")
     @RequestMapping("delete")
     public String delete(Long id) {
-        agentBiz.delete(id);
-        return "redirect:/agent.do/agent.view";
+        orderBiz.delete(id);
+        return "redirect:/order.do/order.view";
     }
     
     
     @SuppressWarnings("resource")
-	@RequiresPermissions("agent:import")
+	@RequiresPermissions("order:import")
     @RequestMapping("import")
     @ResponseBody
     @Transactional()
@@ -142,14 +153,12 @@ public class AgentController {
 			for(int i=1;i<=rowNum;i++) {
 				Row row = sheet.getRow(i);
 				String level = row.getCell(0).getStringCellValue();
-				AgentLevel agentLevel = AgentLevel.parse(level);
-				String agentName = row.getCell(1).getStringCellValue();
-				if(StringUtils.isEmpty(agentName)) continue;
+				String orderName = row.getCell(1).getStringCellValue();
+				if(StringUtils.isEmpty(orderName)) continue;
 				String area = row.getCell(2).getStringCellValue();
-				String openid = row.getCell(3).getStringCellValue();
-				Agent agent = new Agent(agentLevel,agentName,area,openid);
+				Order order = new Order();
 				
-				agentBiz.add(agent);
+				orderBiz.add(order);
 			}
 		} catch(NullPointerException e) {
 			log.error("上传文件解析失败",e);
