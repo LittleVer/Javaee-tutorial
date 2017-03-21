@@ -7,7 +7,7 @@
     <div class="container-fluid">
     	<jsp:include page="/WEB-INF/view/admin/breadcrumb.jsp"></jsp:include>
         <div>
-            <h1 class="page-header">代理商管理</h1>
+            <h1 class="page-header">厂商管理</h1>
         </div>
         <div class="panel-heading">
         </div>
@@ -15,46 +15,53 @@
             <div class="col-lg-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        代理商管理
+                       厂商管理
                     </div>
                     <!-- /.panel-heading -->
                     <div class="panel-body">
                         <div class="dataTable_wrapper">
-                            <form:form action="${pageContext.request.contextPath}/agent.do/update" commandName="agent" method="post" cssClass="form-horizontal">
+                            <form:form action="${pageContext.request.contextPath}/vendor.do/update" commandName="vendor" method="post" cssClass="form-horizontal">
                             	<form:hidden path="id"/>
-                            	<div class="form-group">
-	                                <label class="col-sm-1 control-label">代理商级别</label>
-	                                <div class="col-sm-11">
-	                                	<select name="level" class="selectpicker form-control">
-                                			<option></option>
-	                                		<c:forEach items="${agentLevel }" var="entry">
-	                                			<option value="${entry.name() }" <c:if test="${agent.level==entry }">selected</c:if>>${entry.getName() }</option>
-	                                		</c:forEach>
-	                                	</select>
-	                                </div>
-                                </div>
                                 <div class="form-group">
-	                                <label class="col-sm-1 control-label">代理商名称</label>
+	                                <label class="col-sm-1 control-label">厂商名称</label>
 	                                <div class="col-sm-11">
-	                                	<form:input path="agentName" cssClass="form-control"/>
+	                                	<form:input path="vendorName" cssClass="form-control" required="required"/>
 		                             </div>
                                 </div>
                                 <div class="form-group">
-	                                <label class="col-sm-1 control-label">绑定员工</label>
+	                                <label class="col-sm-1 control-label">负责人</label>
 	                                <div class="col-sm-11">
-	                                	<form:select path="userIds" items="${userList }" itemValue="userId" itemLabel="username" cssClass="selectpicker form-control" multiple="multiple"/>
+	                                	<form:input path="contact" cssClass="form-control"/>
 	                                </div>
                                 </div>
                                 <div class="form-group">
-	                                <label class="col-sm-1 control-label">区域</label>
+	                                <label class="col-sm-1 control-label">网站</label>
 	                                <div class="col-sm-11">
-	                                	<form:select path="area" items="${areaList }" itemValue="area" itemLabel="area" cssClass="selectpicker form-control"/>
+	                                	<form:input path="url" cssClass="form-control" type="url"/>
 	                                </div>
                                 </div>
                                 <div class="form-group">
-	                                <label class="col-sm-1 control-label">openid</label>
+	                                <label class="col-sm-1 control-label">地址</label>
 	                                <div class="col-sm-11">
-	                                	<form:input path="openid" cssClass="form-control"/>
+	                                	<form:input path="address" cssClass="form-control"/>
+	                                </div>
+                                </div>
+                                <div class="form-group">
+	                                <label class="col-sm-1 control-label">电话</label>
+	                                <div class="col-sm-11">
+	                                	<form:input path="telephone" cssClass="form-control" type="number"/>
+	                                </div>
+                                </div>
+                                <div class="form-group">
+	                                <label class="col-sm-1 control-label">手机</label>
+	                                <div class="col-sm-11">
+	                                	<form:input path="phone" cssClass="form-control" type="number"/>
+	                                </div>
+                                </div>
+                                <div class="form-group">
+	                                <label class="col-sm-1 control-label">邮箱</label>
+	                                <div class="col-sm-11">
+	                                	<form:input path="email" cssClass="form-control" type="email"/>
 	                                </div>
                                 </div>
                                 <label></label>

@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import com.entity.Car;
+import com.entity.enumeration.AgentLevel;
 import com.vm.dao.CarDao;
 import com.vm.service.CarBiz;
 
@@ -20,6 +21,12 @@ public class CarBizImpl implements CarBiz {
     }
 
     @Override
+	public List<Car> findByLevel(AgentLevel level) {
+    	//TODO 根据客户等级查询车辆
+    	return carDao.find(new Car());
+	}
+
+	@Override
 	public Car findById(Long id) {
 		return carDao.findById(id);
 	}

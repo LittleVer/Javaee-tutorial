@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.vm.dao.OrderDao">
+
+    <resultMap id="order_map" type="Order">
+        <id property="id" column="id"/>
+        <result property="openid" column="openid"/>
+        <result property="carId" column="car_id"/>
+        <result property="carCnt" column="car_cnt"/>
+        <result property="price" column="price"/>
+        <result property="status" column="status" typeHandler="org.apache.ibatis.type.EnumOrdinalTypeHandler"/>
+        <result property="orderType" column="order_type" typeHandler="org.apache.ibatis.type.EnumOrdinalTypeHandler"/>
+        <result property="startTime" column="start_time"/>
+        <result property="deliverTime" column="deliver_time"/>
+    </resultMap>
+
+
+    <select id="find" resultMap="order_map" parameterType="Order">
+        SELECT * FROM `order`
+    </select>
+
+    <select id="findById" parameterType="long" resultMap="order_map">
+        SELECT * FROM `order` WHERE id = #{value}
+    </select>
+    
+    <select id="findByOpenId" parameterType="string" resultMap="order_map">
+        SELECT * FROM `order` WHERE openid = #{openid}
+    </select>
+
+    <update id="update" parameterType="order">
+        UPDATE `order`
+        <set>
+        	<if test="openid!=null and openid!=''">
+        		openid=#{openid},
+        	</if>
+        </set>
+        WHERE id = #{id}
+    </update>
+	
+    <insert id="add" parameterType="Order">
+        INSERT INTO `order`(openid,car_Id,car_cnt,price,status,order_type,start_time) 
+        VALUES(#{openid},#{carId},#{carCnt},#{price},
+        #{status,typeHandler=org.apache.ibatis.type.EnumOrdinalTypeHandler},
+        #{orderType,typeHandler=org.apache.ibatis.type.EnumOrdinalTypeHandler},
+        now())
+    </insert>
+
+    <delete id="delete" parameterType="long">
+        DELETE FROM `order` WHERE id = #{id}
+    </delete>
+</mapper>

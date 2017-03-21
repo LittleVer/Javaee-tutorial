@@ -63,7 +63,6 @@
                                     <th>名称</th>
                                     <th>绑定职员</th>
                                     <th>区域</th>
-                                    <th>openid</th>
                                     <th>操作</th>
                                 </tr>
                                 </thead>
@@ -74,7 +73,6 @@
                                         <td>${agent.agentName}</td>
                                         <td>${agent.usernames}</td>
                                         <td>${agent.area}</td>
-                                        <td>${agent.openid}</td>
                                         <td>
                                             <a href="${pageContext.request.contextPath}/agent.do/agent_update.view?id=${agent.id}">修改</a>
                                             <a href="${pageContext.request.contextPath}/agent.do/delete?id=${agent.id}"

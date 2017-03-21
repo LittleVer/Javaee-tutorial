@@ -39,6 +39,11 @@ public class AgentBizImpl implements AgentBiz {
 		return AgentDao.findById(id);
 	}
 
+	@Override
+	public Agent findByOpenId(String id) {
+		return AgentDao.findByOpenId(id);
+	}
+
 	public void add(Agent agent) {
         AgentDao.add(agent);
     }

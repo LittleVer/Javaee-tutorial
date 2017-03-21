@@ -14,6 +14,6 @@ public interface AgentBiz {
     public void delete(Long id);
 
 	public Agent findById(Long id);
-
-
+	
+	public Agent findByOpenId(String id);
 }

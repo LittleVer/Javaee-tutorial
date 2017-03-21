@@ -8,6 +8,10 @@
 	<settings>  
         <setting name="logImpl" value="LOG4J"/>  
     </settings>  
+    <typeHandlers>
+    	<typeHandler handler="org.apache.ibatis.type.EnumOrdinalTypeHandler" javaType="com.entity.enumeration.OrderType"/>
+    	<typeHandler handler="org.apache.ibatis.type.EnumOrdinalTypeHandler" javaType="com.entity.enumeration.Status"/>
+    </typeHandlers>
     <!-- 插件配置 -->
     <plugins>  
         <!-- com.github.pagehelper为PageHelper类所在包名 -->  

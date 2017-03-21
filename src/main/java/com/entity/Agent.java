@@ -11,6 +11,7 @@ import com.google.common.collect.Lists;
 public class Agent implements Serializable{
 	private static final long serialVersionUID = 4678225051291399613L;
 	private Long id;
+	private String openid;
     private AgentLevel level;
     private String agentName;
     private List<String> userIds;
@@ -23,11 +24,12 @@ public class Agent implements Serializable{
 		super();
 	}
 
-	public Agent(AgentLevel level, String agentName, String area) {
+	public Agent(AgentLevel level, String agentName, String area, String openid) {
 		super();
 		this.level = level;
 		this.agentName = agentName;
 		this.area = area;
+		this.openid = openid;
 	}
 
 	public Long getId() {
@@ -44,6 +46,14 @@ public class Agent implements Serializable{
 
 	public void setLevel(AgentLevel level) {
 		this.level = level;
+	}
+
+	public String getOpenid() {
+		return openid;
+	}
+
+	public void setOpenid(String openid) {
+		this.openid = openid;
 	}
 
 	public String getAgentName() {

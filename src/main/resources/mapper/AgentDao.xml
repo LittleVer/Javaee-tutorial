@@ -8,6 +8,7 @@
 
     <resultMap id="agent_map" type="Agent">
         <id property="id" column="id"/>
+        <result property="openid" column="openid"/>
         <result property="level" column="level"/>
         <result property="agentName" column="agent_name"/>
         <result property="userIdsStr" column="user_ids"/>
@@ -33,10 +34,17 @@
     <select id="findById" parameterType="long" resultMap="agent_map">
         SELECT * FROM agent WHERE id = #{value}
     </select>
+    
+    <select id="findByOpenId" parameterType="string" resultMap="agent_map">
+        SELECT * FROM agent WHERE openid = #{openid}
+    </select>
 
     <update id="update" parameterType="Agent">
         UPDATE agent 
         <set>
+        	<if test="openid!=null and openid!=''">
+        		openid=#{openid},
+        	</if>
         	<if test="level!=null">
         		level=#{level},
         	</if>
@@ -54,7 +62,7 @@
     </update>
 
     <insert id="add" parameterType="Agent">
-        INSERT INTO agent(level,agent_name,user_ids,area) VALUES(#{level},#{agentName},#{userIdsStr},#{area})
+        INSERT INTO agent(openid,level,agent_name,user_ids,area) VALUES(#{openid},#{level},#{agentName},#{userIdsStr},#{area})
     </insert>
 
     <delete id="delete" parameterType="long">
