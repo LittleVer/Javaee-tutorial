@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.vm.dao.VendorDao">
+
+    <resultMap id="vendor_map" type="Vendor">
+        <id property="id" column="id"/>
+        <result property="vendorName" column="vendor_name"/>
+        <result property="contact" column="contact"/>
+        <result property="url" column="url"/>
+        <result property="address" column="address"/>
+        <result property="telephone" column="telephone"/>
+        <result property="phone" column="phone"/>
+        <result property="email" column="email"/>
+        <result property="attachId" column="attach_id"/>
+    </resultMap>
+
+
+    <select id="find" resultMap="vendor_map" parameterType="Vendor">
+        SELECT * FROM vendor
+        <where>
+        	<if test="vendorName != null and vendorName != ''">
+        		vendor_name like concat('%',#{vendorName},'%')
+        	</if>
+        </where>
+    </select>
+
+    <select id="findById" parameterType="long" resultMap="vendor_map">
+        SELECT * FROM vendor WHERE id = #{value}
+    </select>
+
+    <update id="update" parameterType="vendor">
+        UPDATE vendor 
+        <set>
+        	<if test="vendorName != null and vendorName != ''">
+        		vendor_name = #{vendorName},
+        	</if>
+        	<if test="contact != null and contact != ''">
+        		contact = #{contact},
+        	</if>
+        	<if test="url != null and url != ''">
+        		url = #{url},
+        	</if>
+        	<if test="address != null and address != ''">
+        		address = #{address},
+        	</if>
+        	<if test="telephone != null and telephone != ''">
+        		telephone = #{telephone},
+        	</if>
+        	<if test="phone != null and phone != ''">
+        		phone = #{phone},
+        	</if>
+        	<if test="email != null and email != ''">
+        		email = #{email},
+        	</if>
+        	<if test="attachId != null">
+        		attach_id = #{attachId},
+        	</if>
+        </set>
+        WHERE id = #{id}
+    </update>
+
+    <insert id="add" parameterType="Vendor">
+        INSERT INTO vendor(vendor_name,contact,url,address,telephone,phone,email,attach_id) 
+        VALUES(#{vendorName},#{contact},#{url},#{address},#{telephone},#{phone},#{email},#{attachId})
+    </insert>
+
+    <delete id="delete" parameterType="long">
+        DELETE FROM vendor WHERE id = #{id}
+    </delete>
+</mapper>

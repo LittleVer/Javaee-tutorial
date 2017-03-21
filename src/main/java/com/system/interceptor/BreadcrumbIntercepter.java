@@ -20,9 +20,6 @@ import org.springframework.web.servlet.ModelAndView;
 import com.google.common.collect.Lists;
 import com.system.model.Breadcrumb;
 
-/**
- * Created by c0de8ug on 16-2-14.
- */
 public class BreadcrumbIntercepter implements HandlerInterceptor {
 	private Logger log = Logger.getLogger(BreadcrumbIntercepter.class);
 	private Properties properties;
@@ -53,7 +50,7 @@ public class BreadcrumbIntercepter implements HandlerInterceptor {
         	}
         }
         
-        if(url.indexOf("view") == -1) return true;
+        if(url.indexOf("view") == -1 || url.indexOf("external") != -1) return true;
 
         List<Breadcrumb> breadcrumbs = (List<Breadcrumb>)session.getAttribute("breadcrumbs");
         Matcher matcher = pc.matcher(url);

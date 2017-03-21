@@ -47,7 +47,13 @@
                                 <div class="form-group">
 	                                <label class="col-sm-1 control-label">区域</label>
 	                                <div class="col-sm-11">
-	                                	<form:input path="area" cssClass="form-control"/>
+	                                	<form:select path="area" items="${areaList }" itemValue="area" itemLabel="area" cssClass="selectpicker form-control"/>
+	                                </div>
+                                </div>
+                                <div class="form-group">
+	                                <label class="col-sm-1 control-label">openid</label>
+	                                <div class="col-sm-11">
+	                                	<form:input path="openid" cssClass="form-control"/>
 	                                </div>
                                 </div>
                                 <label></label>

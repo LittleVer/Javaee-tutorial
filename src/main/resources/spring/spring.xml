@@ -42,7 +42,7 @@
 
 	<!--mybatis的SqlSessionFactoy配置 -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-		<property name="configLocation" value="classpath:mybatis-config.xml" />
+		<property name="configLocation" value="classpath:spring/mybatis-config.xml" />
 		<property name="dataSource" ref="dataSource" />
 		<property name="typeAliasesPackage"
 			value="com.entity,com.entity.custom" />
@@ -67,5 +67,5 @@
 	<bean id="exceptionHandlerExceptionResolver" class="com.exception.DefaultExceptionHandler">
 	</bean>
 
-	<import resource="classpath:spring-shiro.xml" />
+	<import resource="classpath:spring/spring-shiro.xml" />
 </beans>

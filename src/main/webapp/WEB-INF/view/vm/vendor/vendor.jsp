@@ -12,39 +12,25 @@
             <div class="col-lg-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        代理商信息
+                        厂商信息
                     </div>
                     <!-- /.panel-heading -->
                     <div class="panel-body">
                         <div class="dataTable_wrapper">
-                        	<form:form cssClass="searchForm form-horizontal" commandName="agent" action="${pageContext.request.contextPath}/agent.do/agent.view/" method="post">
+                        	<form:form cssClass="searchForm form-horizontal" commandName="vendor" action="${pageContext.request.contextPath}/vendor.do/vendor.view/" method="post">
                         		<button type="button" class="btn btn-default pull-right" id="toggle-advanced-search">查询条件<i class="fa fa-angle-double-down"></i></button>
                         		<div class="clearfix"></div>
                         		<div class="row-fluid" id="div-advanced-search" style="display:none;">
                         		<div class="form-group">
-                        			<label class="col-sm-1 control-label">级别</label>
+                        			<label class="col-sm-1 control-label">厂商名称</label>
 	                                <div class="col-sm-2">
-	                                	<select name="level" class="form-control">
-                                			<option></option>
-	                                		<c:forEach items="${agentLevel }" var="entry">
-	                                			<option value="${entry.name() }" <c:if test="${agent.level==entry }">selected</c:if>>${entry.getName() }</option>
-	                                		</c:forEach>
-	                                	</select>
-	                                </div>
-                        			<label class="col-sm-1 control-label">名称</label>
-	                                <div class="col-sm-2">
-	                                	<form:input path="agentName" cssClass="form-control"/>
-	                                </div>
-                        			<label class="col-sm-1 control-label">区域</label>
-	                                <div class="col-sm-2">
-	                                	<form:input path="area" cssClass="form-control"/>
+	                                	<form:input path="vendorName" cssClass="form-control"/>
 	                                </div>
                         		</div>
                                 </div>
                                 <div class="form-group">
                                 	<div class="col-sm-2">
-                                		<a href="${pageContext.request.contextPath}/agent.do/agent_add.view" class="btn btn-primary" role="button">新增</a>
-                                		<button type="button" class="btn btn-primary" onclick="uploader.uploadModal('${pageContext.request.contextPath}/agent.do/import','${pageContext.request.contextPath}/template/agent_tpl.xlsx')">批量上传</button>
+                                		<a href="${pageContext.request.contextPath}/vendor.do/vendor_add.view" class="btn btn-primary" role="button">添加厂商</a>
                                 	</div>
                                 	<label class="col-sm-8 control-label"></label>
                                 	<div id="searchBtns" style="display:none;">
@@ -59,26 +45,38 @@
                             <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                                 <thead>
                                 <tr>
-                                    <th>级别</th>
-                                    <th>名称</th>
-                                    <th>绑定职员</th>
-                                    <th>区域</th>
-                                    <th>openid</th>
+                                    <th>厂商</th>
+                                    <th>负责人</th>
+                                    <th>网站</th>
+                                    <th>地址</th>
+                                    <th>电话</th>
+                                    <th>手机</th>
+                                    <th>邮箱</th>
                                     <th>操作</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <c:forEach var="agent" items="${agentList}">
+                                <c:forEach var="vendor" items="${vendorList}">
                                     <tr>
-                                        <td>${agent.level.getName()}</td>
-                                        <td>${agent.agentName}</td>
-                                        <td>${agent.usernames}</td>
-                                        <td>${agent.area}</td>
-                                        <td>${agent.openid}</td>
+                                        <td>${vendor.vendorName}</td>
+                                        <td>${vendor.contact}</td>
+                                        <td><a href="${vendor.url}" 
+                                        	   data-toggle="popover" 
+                                        	   data-trigger="hover" 
+                                        	   data-title="网址" 
+                                        	   data-placement="top" 
+                                        	   data-container="body"
+                                        	   data-content="${vendor.url}" 
+                                        	   target="_blank">点击跳转</a>
+                                       	</td>
+                                        <td>${vendor.address}</td>
+                                        <td>${vendor.telephone}</td>
+                                        <td>${vendor.phone}</td>
+                                        <td>${vendor.email}</td>
                                         <td>
-                                            <a href="${pageContext.request.contextPath}/agent.do/agent_update.view?id=${agent.id}">修改</a>
-                                            <a href="${pageContext.request.contextPath}/agent.do/delete?id=${agent.id}"
-                                               onclick="return confirm('是否要删除该代理商')">删除</a>
+                                            <a href="${pageContext.request.contextPath}/vendor.do/vendor_update.view?id=${vendor.id}">修改</a>
+                                            <a href="${pageContext.request.contextPath}/vendor.do/delete?id=${vendor.id}"
+                                               onclick="return confirm('是否要删除该厂商')">删除</a>
                                         </td>
                                     </tr>
                                 </c:forEach>

@@ -10,10 +10,6 @@ import com.entity.Standard;
 import com.vm.dao.StandardDao;
 import com.vm.service.StandardBiz;
 
-/**
- * Created by c0de8ug on 16-2-11.
- */
-
 @Service
 public class StandardBizImpl implements StandardBiz {
     @Resource

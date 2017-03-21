@@ -15,4 +15,5 @@ public interface AgentDao {
 
     public void delete(Long id);
 
+	public Agent findByOpenId(String id);
 }
