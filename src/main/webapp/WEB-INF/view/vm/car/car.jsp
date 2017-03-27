@@ -57,7 +57,9 @@
                                 <div class="form-group">
                                 	<div class="col-sm-2">
                                 		<a href="${pageContext.request.contextPath}/car.do/car_add.view" class="btn btn-primary" role="button">新增</a>
-                                		<button type="button" class="btn btn-primary" onclick="uploader.uploadModal('${pageContext.request.contextPath}/car.do/import','${pageContext.request.contextPath}/template/car_tpl.xlsx')">批量上传</button>
+                                		<button type="button" class="btn btn-primary" 
+                                			onclick="uploader.importModal({uploadUrl:'/car.do/import',tempUrl:'/template/car_tpl.xlsx',type:[{word:['excel']}]})">
+                                		批量上传</button>
                                 	</div>
                                 	<label class="col-sm-8 control-label"></label>
                                 	<div id="searchBtns" style="display:none;">

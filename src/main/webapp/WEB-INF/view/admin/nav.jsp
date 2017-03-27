@@ -38,7 +38,7 @@
     <link href="${pageContext.request.contextPath}/bower_components/sweetalert/sweetalert.css"
           rel="stylesheet" type="text/css">
           
-   <link href="${pageContext.request.contextPath}/css/Splitbutton.css" rel="stylesheet" type="text/css">       
+   <link href="${pageContext.request.contextPath}/css/style.css" rel="stylesheet" type="text/css">       
     
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you util the page via file:// -->
@@ -46,13 +46,6 @@
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-	
-	<style>
-		.breadcrumb {
-		    margin: 5px -10px -20px -10px;
-   			background-color: rgb(255, 255, 255);
-	    }
-	</style>
 </head>
 <body>
     <!-- Navigation -->

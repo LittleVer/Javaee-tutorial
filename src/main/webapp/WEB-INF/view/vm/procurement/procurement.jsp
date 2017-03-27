@@ -92,7 +92,7 @@
                                 </tbody>
                             </table>               
                              <jsp:include page="/WEB-INF/view/admin/pageSplit.jsp"></jsp:include>
-                             </form:form>
+                            </form>
                         </div>
                         <!-- /.table-responsive -->
                     </div>

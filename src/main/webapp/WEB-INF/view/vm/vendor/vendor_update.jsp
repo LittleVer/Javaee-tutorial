@@ -64,6 +64,15 @@
 	                                	<form:input path="email" cssClass="form-control" type="email"/>
 	                                </div>
                                 </div>
+                                <div class="form-group">
+	                                <label class="col-sm-1 control-label" for="file">公司证件</label>
+	                                <div class="col-sm-11">
+	                                	<button type="button" class="btn btn-default" 
+                                			onclick="uploader.singleModal({uploadUrl:'/upload.do/image',type:[{image:['all']}],callback:vendorCallback,ids:${vendor.attachId}})">
+                                		证件上传</button>
+	                                	<form:hidden path="attachId"/>
+	                                </div>
+                                </div>
                                 <label></label>
                                 <button type="submit"
                                         class="btn btn-primary form-control">修改
@@ -82,3 +91,9 @@
     <!-- /.container-fluid -->
 </div>
 <jsp:include page="/WEB-INF/view/admin/bottom.jsp"></jsp:include>
+
+<script>
+	function vendorCallback(json) {
+		debugger;
+	}
+</script>

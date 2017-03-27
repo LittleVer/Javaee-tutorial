@@ -1,39 +1,24 @@
 package com.vm.controller;
 
-import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.log4j.Logger;
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.Workbook;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.transaction.interceptor.TransactionAspectSupport;
 import org.springframework.ui.Model;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
-import com.entity.Car;
 import com.entity.Procurement;
-import com.entity.Standard;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.upload.FileUpload;
-import com.upload.Message;
-import com.util.ResultMapUtil;
+import com.vm.service.FileUploadBiz;
 import com.vm.service.ProcurementBiz;
 
 @Controller
@@ -44,7 +29,7 @@ public class ProcurementController {
     @Autowired
     private ProcurementBiz procBiz;
     @Autowired
-	private FileUpload fileUpload;
+	private FileUploadBiz fileUpload;
     
     @RequiresPermissions("procurement:query")
     @RequestMapping("procurement.view")
@@ -99,13 +84,12 @@ public class ProcurementController {
         return "redirect:/procurement.do/procurement.view";
     }
     
-    @SuppressWarnings("resource")
 	@RequiresPermissions("procurement:import")
     @RequestMapping("import")
     @ResponseBody
     @Transactional()
-    public Message imp(HttpServletRequest request){
+    public Map<String,Object> imp(HttpServletRequest request){
     	
-    	return fileUpload.fileUploadFile(request,"procurement");
+    	return fileUpload.fileUploadFile(request);
     }
 }

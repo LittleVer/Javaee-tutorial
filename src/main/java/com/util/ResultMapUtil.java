@@ -18,7 +18,8 @@ public class ResultMapUtil {
 	}
 	public static Map<String,Object> getSuccessMap(String msg,Object obj) {
 		Map<String,Object> map = Maps.newHashMap();
-		map.put("resultCode", 0);
+		map.put("resultCode", Constant.MSG_OK);
+		map.put("resultMsg", Constant.OK_SYS);
 		if(!StringUtils.isEmpty(msg))
 			map.put("resultMsg", msg);
 		if(obj!=null)
@@ -30,7 +31,8 @@ public class ResultMapUtil {
 	}
 	public static Map<String,Object> getFailMap(String msg) {
 		Map<String,Object> map = Maps.newHashMap();
-		map.put("resultCode", -1);
+		map.put("resultCode", Constant.MSG_ERROR);
+		map.put("resultMsg", Constant.ERROR_SYS);
 		if(!StringUtils.isEmpty(msg))
 			map.put("resultMsg", msg);
 		return map;

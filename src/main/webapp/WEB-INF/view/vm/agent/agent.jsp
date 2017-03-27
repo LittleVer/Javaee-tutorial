@@ -44,7 +44,9 @@
                                 <div class="form-group">
                                 	<div class="col-sm-2">
                                 		<a href="${pageContext.request.contextPath}/agent.do/agent_add.view" class="btn btn-primary" role="button">新增</a>
-                                		<button type="button" class="btn btn-primary" onclick="uploader.uploadModal('${pageContext.request.contextPath}/agent.do/import','${pageContext.request.contextPath}/template/agent_tpl.xlsx')">批量上传</button>
+                                		<button type="button" class="btn btn-primary" 
+                                			onclick="uploader.importModal({uploadUrl:'/agent.do/import',tempUrl:'/template/agent_tpl.xlsx',type:[{word:['excel']}]})">
+                                		批量上传</button>
                                 	</div>
                                 	<label class="col-sm-8 control-label"></label>
                                 	<div id="searchBtns" style="display:none;">

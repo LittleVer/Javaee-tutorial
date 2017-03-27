@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.vm.dao.FileUploadDao">
+
+    <resultMap id="fileinfo_map" type="FileInfo">
+        <id property="id" column="id"/>
+        <result property="fileName" column="file_name"/>
+        <result property="filePath" column="file_path"/>
+        <result property="fileType" column="file_type"/>
+        <result property="originalFilename" column="original_filename"/>
+        <result property="uuid" column="uuid"/>
+        <result property="uploadTime" column="upload_time"/>
+    </resultMap>
+
+
+    <select id="findAll" resultMap="fileinfo_map">
+        SELECT * FROM fileupload
+    </select>
+
+    <select id="findById" parameterType="long" resultMap="fileinfo_map">
+        SELECT * FROM fileupload WHERE id = #{value}
+    </select>
+    
+    <select id="findByIds" parameterType="list" resultMap="fileinfo_map">
+        SELECT * FROM fileupload 
+        where id in
+        <foreach collection="list" separator="," open="(" close=")" item="id">
+        	#{id}
+        </foreach>
+    </select>
+
+    <insert id="add" parameterType="FileInfo" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO fileupload(file_name,file_path,file_type,original_filename,uuid,upload_time) 
+        VALUES(#{fileName},#{filePath},#{fileType},#{originalFilename},#{uuid},#{uploadTime})
+    </insert>
+
+    <delete id="delete" parameterType="long">
+        DELETE FROM fileupload WHERE id = #{id}
+    </delete>
+</mapper>
